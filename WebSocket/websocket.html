@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+    <body>
+        <input type="text" id="text">
+        <button id="btn"></button>
+        <p id="rec"></p>
+    </body>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        var socket = new WebSocket('ws://127.0.0.1:12010/updates');
+        socket.openen = function() {
+            setInterval(function() {
+                if(socket.bufferedAmount == 0) {
+                    socket.send(getUpdateData());
+                }
+            }, 50);
+        };
+        socket.onmessage = function(event) {
+            $('rec').contentText = event;
+        }
+        
+
+    </script>
+</html>

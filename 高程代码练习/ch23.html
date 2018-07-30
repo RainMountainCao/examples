@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>ch23</title>
+</head>
+<body>
+</body>
+</html>
+<script src="./EventUtils.JS"></script>
+<script>
+	
+/*if(navigator.onLine) {
+	//正常任务
+}else {
+	//离线任务
+}
+EventUtils.addHandler(window, "online", function() {})
+EventUtils.addHandler(window, "offline", function() {})*/
+
+/*EventUtils.addHandler(applicationCache, "updateready", function() {
+	applicationCache.swapCache();  //启动新应用缓存
+});*/
+
+
+
+//IndexedDB
+var indexedDB = window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB;
+
+var request,
+		db;
+request = indexedDB.open("admin");    //开启admin数据库
+request.onerror = function(event) {
+	console.log(event.target.errorCode);
+};
+request.onsuccess = function(event) {
+	db = event.target.result;   //IDBDatabase对象
+};
+if (db.version != '1.0') {
+	request = db.setVersion('1.0');
+	request.onerror = function(event) {
+		console.log(event.target.errorCode);
+	};
+	request.onsuccess = function(event) {
+		console.log(db.name + " " + db.version);
+	};
+}
+//创建表
+var user = {
+	username: 'cao',
+	age: 21
+};
+var users = [user];
+var requests = [];
+var store = db.createObjectStore("users", {keyPath: "username"});
+//add插入  put更新
+var i = 0,
+		len = users.length;
+while(i < length) {
+	request = store.add(users[i++]);
+	request.onerror = function() {};
+	request.onsuccess = function(){};
+	requests.push(request);
+};
+
+//查询
+var transaction = db.transaction("users");  //读user表
+//一次读取多个表
+var transaction = db.transaction(["users", "anotherStore"]);
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

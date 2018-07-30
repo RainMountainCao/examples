@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>css3</title>
+	<style>
+		* {
+			padding: 0;margin: 0;
+		}
+		body{
+			background-color:#fff;
+		}
+		.font {
+			width: 1090px;
+			height: 1800px;
+			background-color: black;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		.font1 {
+			width: 200px;
+			height: 200px;
+			float: left;
+			background-color: rgba(255,255,255,0.3);
+			margin-top: 20px;
+			margin-left: 15px;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.font1:after {
+			content: attr(data-tag);
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+
+			width: 100%;
+			height: 100%;
+			
+			background-color: rgba(0,0,0,0.7);
+			transition: all 0.3s ease-in;
+			z-index: -1;
+			
+			color: #fff;
+			line-height: 50px;
+			text-align: center;
+			font-weight: 700;
+			font-size: 25px;
+		}
+
+		.font1:hover:after {
+			z-index: 200;
+		}
+
+		.font1:nth-child(1) {
+			line-height: 200px;
+			text-align: center;
+			font-size: 25px;
+			color: yellow;
+			text-shadow: 15px 15px 1px skyblue;
+		}
+
+		.box1 {
+			float: left;
+			width: 90px;
+			height: 60px;
+			border: 1px solid #fff;
+			color: #fff;
+			margin: 3px;
+		}
+
+		.font1:nth-child(2) .box1:nth-child(1){
+			word-break: break-all;  /*不做区分 全部换行 */
+		}
+
+		.font1:nth-child(2) .box1:nth-child(2){
+			word-wrap: break-word;   /* 英文中文换行 */
+		}
+
+		.font1:nth-child(2) .box1:nth-child(3){
+			color: pink;
+			white-space: pre;     /* 保留空格 不会自动换行 */
+		}
+
+		.font1:nth-child(2) .box1:nth-child(4){
+			color: skyblue;
+			white-space: pre-wrap;   /* 保留空格 自动换行 */
+		}
+
+		.font1:nth-child(2) .box1:nth-child(5){
+			color: skyblue;
+			white-space: pre-line;   /* 空格合并 换行 */
+		}
+
+		.font1:nth-child(2) .box1:nth-child(6){
+			color: pink;
+			white-space: nowrap;   /* 空格合并 强制一行显示 */
+		}
+
+		.font1:nth-child(3) .box1:nth-child(1){
+			margin: 20px;
+			color: #fff;
+
+			text-overflow: ellipsis;  /* 单行...隐藏文本 */
+			overflow: hidden;
+			white-space: nowrap;
+		}
+
+		.font1:nth-child(3) .box1:nth-child(2){
+			margin-left: 30px;
+			color: #fff;
+
+			text-overflow: ellipsis;  /* 多行...隐藏文本 设置从哪一行隐藏 */
+			overflow: hidden;
+			/* white-space: nowrap; */
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+
+		.box2 {
+			margin: 45px auto;
+			width: 100px;
+			height: 100px;
+			border: 2px solid rgba(255,255,255,0.6);
+		}
+
+		.font1:nth-child(4) .box2:nth-child(1){
+			box-shadow: 10px 10px 5px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(5) .box2:nth-child(1){
+			box-shadow: -10px -10px 5px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(6) .box2:nth-child(1){
+			box-shadow: 0px -10px 5px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(7) .box2:nth-child(1){
+			box-shadow: 0px 10px 5px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(8) .box2:nth-child(1){
+			box-shadow: 20px 0px 0px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(9) .box2:nth-child(1){
+			box-shadow: 20px 0px 30px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(10) .box2:nth-child(1){
+			box-shadow: inset 20px 20px 0px 0px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(11) .box2:nth-child(1){
+			box-shadow: 0px 0px 0px 20px rgba(255,255,255,0.5);
+		}
+
+		.font1:nth-child(12) .box2:nth-child(1){
+			box-shadow: 20px 0px 0px 20px rgba(255,255,255,0.5);
+		}
+
+		.box3 {
+			width: 200px;
+			height: 200px;
+
+			border:1px solid transparent;
+
+			border-image-source: url(border.png);
+			border-image-width: 20px;
+
+/* 			-moz-border-image:url(border.png) 30 30 round;	Old Firefox
+-webkit-border-image:url(border.png) 30 30 round;	Safari and Chrome
+-o-border-image:url(border.png) 30 30 round;		Opera
+border-image:url(border.png) 30 30 round; */
+
+		}
+
+		.font1:nth-child(13) .box3:nth-child(1){
+			background: url(border.png) center center no-repeat;
+		}
+
+		.font1:nth-child(13) .box3:nth-child(1){
+			border-image-slice: 27;
+		}
+
+		.font1:nth-child(14) .box3:nth-child(1){
+			border-image-slice: 27;
+			border-image-repeat: round;
+		}
+
+		.font1:nth-child(15) .box3:nth-child(1){
+			border-image-slice: 27;
+			border-image-repeat: stretch;
+		}
+
+		.font1:nth-child(16) .box3:nth-child(1){
+			width: 180px;
+			height: 160px;
+			border-image-slice: 27;
+			border-image-repeat: repeat;
+			margin: 20px 10px;
+		}
+
+		.font1:nth-child(17) .box3:nth-child(1){
+			border-image-slice: 27;
+			border-image-repeat: round stretch;
+		}
+
+		.font1:nth-child(18) .box3:nth-child(1){
+			border-image-width: 40px;
+			border-image-slice: 27 40 40 27;
+			border-image-repeat: stretch;
+		}
+
+		.font1:nth-child(19) .box2:nth-child(1){
+			box-shadow: 10px 10px 0px 0px pink,
+						-10px -10px 0px 0px skyblue,
+						inset 10px 10px 2px 0px #ccc;
+		}
+
+		.font1:nth-child(20) .box2:nth-child(1){
+			border: 20px solid pink;
+			width: 100px;
+			height: 100px;
+			color: yellow;
+		}
+		.font1:nth-child(20) .box2:nth-child(1) > div{
+			border: 10px solid blue;
+			width: 50px;
+			height: 50px;
+			color: inherit;
+		}
+		.font1:nth-child(20) .box2:nth-child(1) > div > div {
+			width: 10px;
+			height: 10px;
+			border: 10px solid;
+		}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="font">
+		<div class="font1" data-tag="文字阴影">阴影测试</div>
+		<div class="font1" data-tag="文本换行">
+			<div class="box1">这是一些字http:www.baidu.com</div>
+			<div class="box1">这是一些字http:www.baidu.com</div>
+			<div class="box1">这是一些字        http:www.b          aidu.com</div>
+			<div class="box1">这是  一   些字        ht   tp:w   ww.b          ai   d     u.com</div>
+			<div class="box1">这是一   些字       http   :ww     w.bai  du.co  m</div>
+			<div class="box1">这是    一些  字   htt   p:www.b    ai  du.c   om</div>
+		</div>
+		<div class="font1" data-tag="文本溢出">
+			<div class="box1">测试文本溢出测试文本溢出测试文本溢出测试文本</div>
+			<div class="box1">测试文本溢出测试文本溢出测试文本溢出测试文本</div>
+		</div>
+		<div class="font1" data-tag="右下"><div class="box2"></div></div>
+		<div class="font1" data-tag="左上"><div class="box2"></div></div>
+		<div class="font1" data-tag="上"><div class="box2"></div></div>
+		<div class="font1" data-tag="下"><div class="box2"></div></div>
+		<div class="font1" data-tag="模糊度对比1 不加模糊度"><div class="box2"></div></div>
+		<div class="font1" data-tag="模糊度对比2 模糊度30px 具体占位50px"><div class="box2"></div></div>
+		<div class="font1" data-tag="内阴影"><div class="box2"></div></div>
+		<div class="font1" data-tag="扩充20px"><div class="box2"></div></div>
+		<div class="font1" data-tag="扩充20px 再右移20px"><div class="box2"></div></div>
+		<div class="font1" data-tag="只设置width sourch 默认拉伸"><div class="box3"></div></div>
+		<div class="font1" data-tag="round"><div class="box3"></div></div>
+		<div class="font1" data-tag="stretch"><div class="box3"></div></div>
+		<div class="font1" data-tag="repeat 不会自己调整 round能自己调整完整显示"><div class="box3"></div></div>
+		<div class="font1" data-tag="上下round 左右stretch"><div class="box3"></div></div>
+		<div class="font1" data-tag="27 40 40 27 slice实践   "><div class="box3"></div></div>
+		<div class="font1" data-tag="设置多个阴影"><div class="box2"></div></div>
+		<div class="font1" data-tag="边框颜色"><div class="box2">
+			<div>
+				<div></div>
+			</div>
+		</div></div>
+	</div>
+</body>
+</html>

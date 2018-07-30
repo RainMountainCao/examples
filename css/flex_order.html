@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>flex order</title>
+	<style>
+		body{
+			padding: 0;
+			margin: 0;
+			display: flex;
+		}
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			margin: 10px;
+		}
+		.box1 {
+			order: 3;
+		}
+		.box2 {
+			order: 5;
+		}
+		.box3 {
+			order: 1;
+		}
+		.box4 {
+			order: 6;
+		}
+		.box5 {
+			order: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">3 1号</div>
+	<div class="box2">5 2号</div>
+	<div class="box3">1 3号</div>
+	<div class="box4">6 4号</div>
+	<div class="box5">2 5号</div>
+</body>
+</html>

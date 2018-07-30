@@ -1,0 +1,29 @@
+<html>
+	<body>
+		消息显示：
+		<div id="content"></div>
+	</body>
+</html>
+<script>
+	var messageHandler = function(event) {
+		document.getElementById('content').innerHTML = event.data;
+	}
+
+	document.addEventListener('DOMContentLoaded', function(){
+		if(window.MessageChannel) {
+			// 创建端口对象
+			var mc = new MessageChannel();
+			console.log(mc);
+			// 给主窗体发端口
+			window.parent.postMessage('显示页面加载完毕', '*', [mc.port1]);
+
+			// 显示发送的消息
+			mc.port2.addEventListener('message', messageHandler, false);
+			mc.port2.start();
+		} else {
+			alert('不支持通道通信');
+		}
+	}, false);
+
+
+</script>

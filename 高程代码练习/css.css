@@ -1,0 +1,15 @@
+.mydiv{
+	width: 550px;
+	height: 550px;
+	background-color: #ccc;
+	overflow: hidden;
+}
+.box{
+	width: 100px;
+	margin: 18px auto;
+	height: 105px;
+	background-color: yellow;
+}
+.div1{
+	height: 135px;
+}

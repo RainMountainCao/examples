@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>窗体通信</title>
+</head>
+<body>
+	<button id="timmy">我是许魏洲</button>
+	<button id="hao">我是刘昊然</button>
+</body>
+</html>
+<script>
+	window.onload = function() {
+		var message = 'vv';
+		document.getElementById('timmy').onclick = function() {
+			message = this.innerText;
+			window.open('frame1.html');
+		}
+		document.getElementById('hao').onclick = function() {
+			message = this.innerText;
+			window.open('frame1.html');
+		}
+
+		window.addEventListener('message', function(event) {
+			console.log(event.data);
+			var interval;
+			switch(event.data) {
+				case 'ready':
+					//interval = setTimeout(function(win) {
+                    event.source.postMessage(message,'*');    
+                //}, 0, event.source);
+					break;
+				case 'closed':
+					clearInterval(interval);
+					break;
+				default:
+					break;
+			}
+		}, false);
+	}
+</script>

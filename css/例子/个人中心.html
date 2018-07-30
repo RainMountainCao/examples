@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>个人中心</title>
+	<style>
+	body {
+		background-color: #000;
+	}
+		.main {
+			background-color: #fff;
+			margin: 100px auto;
+			width: 260px;
+			border: 1px solid #ccc;
+			display: flex;
+			flex-direction: column;
+		}
+		.top {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			margin: 14px;
+		}
+
+		.bottom {
+			height: 74px;
+			background-color: #ccc;
+			display: flex;
+		}
+		.box {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.box:nth-child(1) {
+			background-color: #03AAD7;
+		}
+		.box:nth-child(2) {
+			background-color: #FC7F2E;
+		}
+		.box:nth-child(3) {
+			background-color: #12AAA6;
+		}
+
+		.img {
+			width: 64px;
+			height: 64px;
+			background-image: url(images/huang.jpg);
+			background-size: cover;
+			/* background-position: -290px -69px; */
+			padding: 8px;
+			border-radius: 50%;
+			border: 1px solid #ccc;
+
+		}
+		.name {
+			flex:1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin-left: 20px;
+		}
+		span:nth-child(1) {
+			font-size: 22px;
+			color: #5C6C7D;
+		}
+		span:nth-child(2) {
+			font-size: 16px;
+			color: #5C6C7D;
+		}
+		.box span:nth-child(1) {
+			color: #fff;
+			font-size: 26px;
+		}
+		.box span:nth-child(2) {
+			color: #fff;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="top">
+			<div class="img"></div>
+			<div class="name"><span>黄景瑜</span><span>鲸鱼</span></div>
+		</div>
+		<div class="bottom">
+			<div class="box"><span>❤</span><span>1252</span></div>
+			<div class="box"><span>✪</span><span>1252</span></div>
+			<div class="box"><span>❁</span><span>1252</span></div>
+		</div>
+	</div>
+</body>
+</html>

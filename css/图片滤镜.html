@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>滤镜</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+		.main {
+			width: 1180px;
+			height: 1100px;
+			background-color: pink;
+			margin: 0 auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-content: flex-start;
+		}
+
+		.box {
+			margin: 30px;
+			width: 300px;
+			height: 200px;
+			background-color: yellow;
+		}
+		figcaption {
+			color: #000;
+			font-size: 24px;
+		}
+
+		.box:nth-child(2) img {
+			-webkit-filter: blur(10px);
+		}
+
+		.box:nth-child(3) img {
+			-webkit-filter: brightness(0.8);
+		}
+
+		.box:nth-child(4) img {
+			-webkit-filter: contrast(0.5);
+		}
+
+		.box:nth-child(5) img {
+			-webkit-filter: grayscale(1);
+		}
+
+		.box:nth-child(6) img {
+			-webkit-filter: hue-rotate(1000deg);
+		}
+
+		.box:nth-child(7) img {
+			-webkit-filter: invert(1);
+		}
+
+		.box:nth-child(8) img {
+			-webkit-filter: opacity(0.3);
+		}
+
+		.box:nth-child(9) img {
+			-webkit-filter: saturate(2);
+		}
+
+		.box:nth-child(10) img {
+			-webkit-filter: sepia(1);
+		}
+
+		.box:nth-child(11) img {
+			-webkit-filter: drop-shadow(20px 20px 10px rgba(255,255,255,0.8));
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>none</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>blur  10px 模糊效果</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>brightness 0.8 亮度</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>contrast 0.5 对比度</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>grayscale  1 灰度</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>hue-rotate  1000deg 色像旋转</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>invert  1 反色</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>opacity  0.3 </figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>saturate  2 饱和度</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>sepia  1 褐色程度</figcaption>
+			</figure>
+		</div>
+		<div class="box">
+			<figure>
+				<img src="images/tu.jpg" alt="" width="300px" height="200px" />
+				<figcaption>drop-shadow  x y radius color 阴影</figcaption>
+			</figure>
+		</div>
+		
+	</div>
+</body>
+</html>

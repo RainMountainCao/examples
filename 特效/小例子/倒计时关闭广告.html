@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>关闭广告</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 800px;
+		}
+		.left{
+			top: 50%;
+			margin-top: -220px;
+			position: fixed;
+		}
+		.right{
+			top: 50%;
+			right: 0;
+			margin-top: -220px;
+			position: fixed;
+		}
+		p{
+			font-size: 70px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			function $(id){return document.getElementById(id);}
+			function hide(id){$(id).style.display = "none";}
+			function display(id){$(id).style.display = "block";}
+			var tineoutId = setTimeout(fun,3000);
+			function fun(){
+				hide("l");
+				hide("r");
+			}
+		}
+	</script>
+</head>
+<body>
+		<div class="left" id="l"><a href="#"><img src="images/1.gif" alt="" /></a></div>
+		<div class="right" id="r"><a href="#"><img src="images/2.gif" alt="" /></a></div>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+		<p>2222222</p>
+</body>
+</html>

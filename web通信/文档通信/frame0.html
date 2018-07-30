@@ -1,0 +1,14 @@
+<html>
+	<body>
+		消息显示：
+		<div id="content"></div>
+	</body>
+</html>
+<script>
+	window.addEventListener('message', handleMessage, false);
+	function handleMessage(event) {
+		document.getElementById('content').innerHTML = event.data;
+		console.log('event.origin : ' + event.origin);
+		console.log('event.source : ' + event.source);
+	}
+</script>

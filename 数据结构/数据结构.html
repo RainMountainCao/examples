@@ -1,0 +1,1883 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>二三章</title>
+	<script>
+		
+		/*function checking(amount) {
+			this.balance = amount;
+			this.deposit = deposit;
+			this.withdraw = withdraw;
+			this.toString = toString;
+		}
+
+		function deposit(amount) {
+			this.balance += amount;
+		}
+		function withdraw(amount) {
+			if (amount <= this.balance) {
+				this.balance -= amount;
+			} else {
+				console.log("Insufficient funds");
+			}
+		}
+		function toString() {
+			return "Balance:" + this.balance;
+		}
+
+
+		var account = new checking(500);
+		account.deposit(1000);
+		console.log(account.toString());
+
+		account.withdraw(300);
+		account.withdraw(10000);
+		console.log(account.toString());		
+*/
+
+/*	var array = new Array();
+	console.log(array instanceof Array);
+	console.log(Array.isArray(array));
+	console.log(Object.prototype.toString.call(array)=="[object Array]");
+	console.log(Object.prototype.toString.call(a)=="[object Function]");
+
+	function a() {}
+
+	var arr = [1,2,3,4,5,6,7];
+	console.log('valueOf  ' + arr.valueOf());
+	console.log('toString  ' + arr.toString());
+	console.log(arr);*/
+	//console.log('toLocalString  ' + arr.toLocalString());
+
+	/*var names = ["David","Mike","Cynthia","Clayton","Bryan","Raymond"]; 
+	names.sort(); 
+	console.log(names);*/ // Bryan,Clayton,Cynthia,David,Mike,Raymond
+
+
+
+
+	/*var num = [1,2,3,4,5,6,7,8,9,10];
+	num.forEach(function(data){
+		console.log(data, data*data);
+	});         //遍历数组每一项
+	console.log(num.every(function(data){
+		return data > 0;
+	}));        //true   （and）
+	console.log(num.some(function(data){
+		return data > 1;
+	}));		//true   （or）
+	console.log(num.filter(function(data){
+		return data>4;
+	}));       //[5, 6, 7, 8, 9, 10]
+	console.log(num.map(function(data){
+		return data+2;
+	}));	   //[3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+	console.log(num.reduce(function(prev, cur, index, arr){
+		return prev + cur;
+	}));
+	console.log(num.reduceRight(function(prev, cur, index, arr){
+		return prev + cur;
+	}));*/
+
+	Array.matrix = function(numrows, numcols, initial) {
+		var arr = [];
+		for (var i=0; i < numrows; i++) {
+			var column = [];
+			for(var j=0; j < numcols; j++) {
+				column[j] = initial;
+			}
+			arr[i] = column;
+		}
+		return arr;
+	}
+
+//	var array = Array.matrix(2,2,1);
+//	console.log(array[1][1]);
+
+	/*var array = [[1,3,2],[1,3],[2,1,3]];
+	var sumRows = 0;
+	for(var i=0; i<array.length; i++){
+
+		var sumCols = 0;
+		for(var j=0; j<array[i].length; j++){
+			sumCols += array[i][j];
+		}
+		var everyCol = sumCols / array[i].length;
+		console.log(everyCol);
+		sumRows += everyCol;
+	}
+	var every = sumRows / array.length;
+	console.log("every  " + every);*/
+
+	/*function point(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	var p1 = new point(1,2);
+	var p2 = new point(1,2);
+	var p3 = new point(1,2);
+	var p4 = new point(1,2);
+	var p5 = new point(1,2);
+	var p6 = new point(1,2);
+
+	var points = [p1, p2, p3, p3, p4, p5, p6];
+	for(var i=0; i<points.length; i++) {
+		console.log(points[i].x + "  " + points[i].y);
+	}*/
+
+	/*function Student() {
+		this.score = [];
+		this.add = addScore;
+		this.everyScore = computeEvery;
+	}
+
+	function computeEvery() {
+		var sum = 0;
+		for(var i=0; i<this.score.length; i++) {
+			sum += this.score[i];
+		}
+		return sum / this.score.length;
+	}
+	function addScore(score) {
+		this.score.push(score);
+	}
+
+	var s = new Student();
+	s.add(1);
+	s.add(3);
+	console.log(s.everyScore());
+*/
+	//数组转字符串
+	/*var arr = ['h','e','l','l','o'];
+	arr.reduce(function(prev,cur,index,arr){
+		return prev + cur;
+	});
+	console.log(arr);
+*/
+
+	/*function words() {
+		this.arr = ['h','e','l','l','o'];
+		this.toWords = toWords;
+	}
+	function toWords() {
+		var words = '';
+		for(var i=0; i<this.arr.length; i++){
+			words += this.arr[i];
+		}
+		return words;
+	}
+
+	var w = new words();
+	console.log(w.toWords());*/
+
+
+
+//列表
+/*	function List() {
+		this.listSize = 0;
+		this.pos = 0;
+		this.dataStore = [];
+		this.clear = clear;
+		this.find = find;
+		this.toString = toString;
+		this.insert = insert;
+		this.append = append;
+		this.remove = remove;
+		this.prev = prev;
+		this.next = next;
+		this.front = front;
+		this.end = end;
+		this.length = length;
+		this.currPos = currPos;
+		this.moveTo = moveTo;
+		this.getElement = getElement;
+		this.length = length;
+		this.contains = contains;
+		this.insertBigger = insertBigger;
+		this.insertSmaller = insertSmaller;
+	}
+	function append(element) {
+		this.dataStore[this.listSize++] = element;
+	}
+	function remove(element) {
+		var index = this.find(element);
+		if (index > -1) {
+			this.dataStore.splice(index, 1);
+			--this.listSize;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function find(element) {
+		for(var i=0; i<this.listSize; i++) {
+			if (this.dataStore[i] == element) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	function length() {
+		return this.listSize;
+	}
+	function toString() {
+		return this.dataStore;
+	}
+
+	function insert(element, after) {
+		var index = this.find(after);
+		if (index > -1) {
+			this.dataStore.splice(index+1, 0, element);
+			++this.listSize;
+			return true;
+		}
+		return false;
+	}
+
+	function clear() {
+		delete this.dataStore;
+		this.dataStore = [];
+		this.listSize = this.pos = 0;
+	}
+
+	function contains(element) {
+		for(var i=0; i<this.listSize; i++) {
+			if (this.dataStore[i] == element) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function front() {
+		this.pos = 0;
+	}
+	function end() {
+		this.pos = this.listSize-1;
+	}
+	function prev() {
+		if (this.pos > 0) {
+			--this.pos;
+		}
+	}
+	function next() {
+		if (this.pos < this.listSize) {
+			++this.pos;
+		}
+	}
+	function currPos() {
+		return this.pos;
+	}
+	function moveTo(position) {
+		this.pos = position;
+	}
+	function getElement() {
+		return this.dataStore[this.pos];
+	}
+
+
+	function insertBigger(element) {
+		var flag = true;
+		for(this.front(); this.currPos()<this.length(); this.next()) {
+			if (this.getElement() >= element) {
+				flag = false;
+			}
+		}
+		if (flag) {
+			this.dataStore[this.listSize++] = element;
+			return true;
+		}
+		return false;
+	}
+
+	function insertSmaller(element) {
+		var flag = true;
+		for(this.front(); this.currPos()<this.length(); this.next()) {
+			if(this.getElement() <= element) {
+				flag = false;
+			}
+		}
+		if (flag) {
+			this.append(element);
+			return true;
+		}
+		return false;
+	}*/
+
+
+
+
+	/*var l = new List();
+	l.append(111);
+	l.append(222);
+	l.append(333);
+	l.append(444);
+	l.append(555);
+	l.append(666);
+	l.append(777);
+	console.log(l.insertBigger(1000));
+	console.log(l.insertSmaller(110));*/
+	//console.log(l.toString());
+//迭代器
+	/*for(l.front(); l.currPos()<l.length(); l.next()) {
+		console.log(l.getElement());
+	}*/
+/*	for(l.end(); l.currPos() > 0; l.prev()) {
+		console.log(l.getElement());
+	}*/
+
+/*	var movies = read().split("\n");
+	for(var i=0; i<movies.length; i++) {
+		movies[i] = movies[i].trim();
+	}*/
+	/*var fso = new ActiveXObject("Scripting.FileSystemObject");
+ 	var ts = fso.OpenTextFile("bestmovies.txt", ForReading);
+ 	var movies = ts.ReadLine();
+	console.log(movies);*/
+
+/*	function Person(name, sex) {
+		this.name = name;
+		this.sex = sex;
+		this.getName = getName;
+		this.getSex = getSex;
+		this.setName = setName;
+		this.setSex = setSex;
+	}
+	function getName() {
+		return this.name;
+	}
+	function getSex() {
+		return this.sex;
+	}
+	function setName(name) {
+		this.name = name;
+	}
+	function setSex(sex) {
+		this.sex = sex;
+	}
+
+
+	function List2() {
+		this.pos = 0;
+		this.listSize = 0;
+		this.dataStore = [];
+		this.append = append;
+		this.currPos = currPos;
+		this.length = length;
+		this.prev = prev;
+		this.front = front;
+		this.next = next;
+		this.remove = remove;
+		this.toString = toString;
+		this.getElement = getElement;
+	}
+
+	var list = new List2();
+	
+	var p1 = new Person("111","1");
+	var p2 = new Person("222","0");
+	var p3 = new Person("333","0");
+	var p4 = new Person("444","0");
+	var p5 = new Person("555","0");
+
+	list.append(p1);
+	list.append(p2);
+	list.append(p3);
+	list.append(p4);
+	list.append(p5);
+*/
+/*	for(list.front(); list.currPos()<list.length(); list.next()) {
+		console.log(list.getElement().getName() + "   " + list.getElement().getSex());
+	}*/
+
+
+
+/*	function Stack() {
+		this.dataStore = [];
+		this.top = 0;
+		this.pop = pop;
+		this.push = push;
+		this.peek = peek;
+		this.clear = clear;
+		this.length = length;
+	}
+	function pop() {
+		if (this.top > -1) {
+			return this.dataStore[--this.top];
+		}
+	}
+	function push(element) {
+		this.dataStore[this.top++] = element;
+	}
+	function peek() {
+		if (this.top > -1) {
+			return this.dataStore[this.top-1];
+		}
+	}
+	function clear() {
+		this.top = 0;
+	}
+	function length() {
+		return this.top;
+	}*/
+
+/*	var stack = new Stack();
+	stack.push(111);
+	stack.push(222);
+	stack.push(333);
+	stack.push(444);
+	stack.push(555);
+	stack.push(666);
+	console.log(stack.pop());
+	console.log(stack.pop());
+	console.log(stack.peek());
+	console.log(stack.peek());*/
+
+
+	/*function mulBase(num, base) {
+		var stack = new Stack();
+		do {
+			stack.push(num % base);
+			num = Math.floor(num / base);
+		} while(num > 0);
+		var converted = "";
+		while(stack.length() > 0) {
+			converted += stack.pop();
+		}
+		return converted;
+	}*/
+	/*function mulBase(num, base) {
+		var stack = new Stack();
+		do {
+			stack.push(num%base);
+			num = Math.floor(num/base);
+		} while(num > 0);
+		var deverted = '';
+		while(stack.length() > 0) {
+			deverted += stack.pop();
+		}
+		return deverted;
+	}
+	console.log(mulBase(8,2));*/
+
+	/*function Queue() {
+		this.dataStore = [];
+		this.enqueue = enqueue;
+		this.dequeue = dequeue;
+		this.front = front;
+		this.back = back;
+		this.toString = toString;
+		this.empty = empty;
+	}
+	function enqueue(element) {
+		this.dataStore.push(element);
+	}
+	function dequeue() {
+		return this.dataStore.shift();
+	}
+	function front() {
+		return this.dataStore[0];
+	}
+	function back() {
+		return this.dataStore[this.dataStore.length-1];
+	}
+	function toString() {
+		return this.dataStore;
+	}
+	function empty() {
+		return (this.dataStore.length == 0);
+	}*/
+
+//45 72 93 51 21 16 70 41 27 31 
+	//2位基数排序              queues是队列数组
+/*	function distribute(nums, queues, n, digit) {
+		for(var i=0; i<n; i++) {
+			if (digit == 1) {
+				queues[nums[i]%10].enqueue(nums[i]);
+				console.log(nums[i]);
+			} else {
+				queues[Math.floor(nums[i]/10)].enqueue(nums[i]);
+				console.log(nums[i]);
+			}
+		}
+		collect(queues, nums);
+	}
+	function collect(queues, nums) {
+		var j=0;
+		for(var i=0; i<10; i++) {
+			while(!queues[i].empty()) {
+				nums[j++] = queues[i].dequeue();
+			}
+		}
+		console.log(nums);
+	}
+	function displayQueue(nums) {
+		console.log(nums);
+	}
+
+	var nums = [45, 72, 93, 51, 21, 16, 70, 41, 27, 31];
+	var queues = [];
+	for(var i=0; i<10; i++) {
+		queues[i] = new Queue;
+	}
+	displayQueue(nums);
+	var q1 = distribute(nums, queues, nums.length, 1);
+	displayQueue(nums);
+	var q2 = distribute(nums, queues, nums.length, 10);
+	displayQueue(nums);*/
+
+
+/*	function test(data) {
+		if (typeof data == 'string') {
+			data = '222';
+			console.log(data);
+		} else if (typeof data == 'number') {
+			data++;
+			console.log(++data);
+		} else if (typeof data == 'boolean') {
+			data = false;
+			console.log(data);
+		} else if (typeof data == 'object') {
+			console.log(data[0]);
+			data[0] = "111";
+		}
+	}
+	
+	var str = '111';
+	var num = 1;
+	var bb = true;
+	var arr = new Array(1,2,3,4,5,6);
+	test(str);
+	test(num);
+	test(bb);
+	test(arr);
+	console.log("out: " + str);
+	console.log("out: " + num);
+	console.log("out: " + bb);
+	console.log("out: " + arr[0]);
+*/
+
+//医院
+/*function dequeue() {
+	var priority = this.dataStore[0].code;
+	var index = 0;
+	for (var i = 1; i < this.dataStore.length; ++i) {
+	  if (this.dataStore[i].code < priority) {
+      index = i;
+      priority = this.dataStore[i].code;
+    }
+  }
+	return this.dataStore.splice(index,1);
+}
+function Patient(name, code) {
+	this.name = name;
+	this.code = code;
+}
+var queue = new Queue();
+queue.enqueue(new Patient("11",6));
+queue.enqueue(new Patient("22",5));
+queue.enqueue(new Patient("33",3));
+queue.enqueue(new Patient("44",5));
+queue.enqueue(new Patient("55",1));
+queue.enqueue(new Patient("66",2));
+console.log(queue.dequeue());
+*/
+
+//双向队列
+function Deque() {
+	this.dataStore = [];
+	this.front = front;
+	this.end = end;
+	this.frontEnQueue = frontEnQueue;
+	this.endEnQueue = endEnQueue;
+	this.frontDeQueue = frontDeQueue;
+	this.endDeQueue = endDeQueue;
+	this.isEmpty = isEmpty;
+	this.dequeue = dequeue;
+}
+function front() {
+	return this.dataStore[0];
+}
+function end() {
+	return this.dataStore[this.dataStore.length - 1]
+}
+function frontEnQueue(element) {
+	this.dataStore.unshift(element);
+}
+function endEnQueue(element) {
+	this.dataStore.push(element);
+}
+function frontDeQueue() {
+	if (!this.isEmpty()) {
+		return this.dataStore.shift();
+	}
+}
+function endDeQueue() {
+	if (!this.isEmpty()) {
+		return this.dataStore.pop();
+	}
+}
+function isEmpty() {
+	return (this.dataStore.length == 0);
+}
+
+/*var queue = new Deque();
+queue.frontEnQueue(1);
+queue.frontEnQueue(2);
+queue.frontEnQueue(3);
+queue.endEnQueue(4);
+queue.endEnQueue(5);
+queue.endEnQueue(6);
+console.log("queue  :  " + queue.dataStore);
+console.log("queue.front()  :  " + queue.front());
+console.log("queue.frontDeQueue()  :  " + queue.frontDeQueue());
+console.log("queue  :  " + queue.dataStore);
+console.log("queue.end()  :  " + queue.end());
+console.log("queue.endDeQueue()  :  " + queue.endDeQueue());
+console.log("queue  :  " + queue.dataStore);*/
+
+
+
+
+//判断回文
+/*var arr = [];
+var str = "asdfafdsa";
+arr = str.split("");
+var deque = new Deque();
+for(var i=0; i<arr.length; i++) {
+	deque.endEnQueue(arr[i]);
+}
+
+var str1 = "";
+while(!deque.isEmpty()) {
+	str1 += deque.endDeQueue();
+}
+
+console.log(str == str1);
+*/
+
+//优先码大  严重  ，重新写医院
+
+/*function Patient(name, code) {
+	this.name = name;
+	this.code = code;
+}
+var deque = new Deque();
+deque.endEnQueue(new Patient("111", 1));
+deque.endEnQueue(new Patient("222", 6));
+deque.endEnQueue(new Patient("333", 4));
+deque.endEnQueue(new Patient("444", 1));
+deque.endEnQueue(new Patient("555", 4));
+deque.endEnQueue(new Patient("666", 8));
+deque.endEnQueue(new Patient("777", 2));
+
+function dequeue() {
+	var priority = this.dataStore[0].code;
+			index = 0;
+	for(var i=0; i<this.dataStore.length; i++) {
+		if (this.dataStore[i].code > priority) {
+			priority = this.dataStore[i].code;
+			index = i;
+		}
+	}
+	return this.dataStore.splice(index, 1);
+}
+
+console.log(deque.dequeue());
+*/
+
+//链表
+/*function Node(element) {
+	this.element = element;
+	this.next = null;
+}
+
+function LList() {
+	this.head = new Node("head");
+	this.find = find;
+	this.insert = insert;
+	this.remove = remove;
+	this.display = display;
+}
+function find(element) {
+	var currNode = this.head;
+	while((currNode.element != element) && (currNode.next != null)) {
+		currNode = currNode.next;
+	}
+	if (currNode.element == element) {
+		return currNode;
+	} else {
+		return null;
+	}
+}
+function insert(element, after) {
+	var currNode = this.find(after);
+	var node = new Node(element);
+	node.next = currNode.next;
+	currNode.next = node;
+}
+function display() {
+	var currNode = this.head;
+	while(currNode.next) {
+		console.log(currNode.next.element);
+		currNode = currNode.next;
+	}
+}
+function findPrevious(element) {
+	var currNode = this.head;
+	while((currNode.next.element != element) && (currNode.next != null)) {
+		currNode = currNode.next;
+	}
+	if (currNode.next) {
+		return currNode;
+	} else {
+		return null;
+	}
+}
+function remove(element) {
+	var currNode = this.findPrevious(element);
+	if (currNode) {
+		currNode.next = currNode.next.next;
+	}
+}
+
+var linkList = new LList();
+linkList.insert("111", "head");
+linkList.insert("222", "111");
+linkList.insert("333", "222");
+linkList.insert("444", "333");
+linkList.insert("666", "444");
+linkList.insert("555", "444");
+linkList.display();
+*/
+
+//双向链表
+/*function Node(element) {
+	this.element = element;
+	this.next = null;
+	this.previous = null;
+}
+function LList() {
+	this.head = new Node("head");
+	this.currNode = this.head;
+	this.find = find;
+	this.insert = insert;
+	this.remove = remove;
+	this.findLast = findLast;
+	this.dispReverse = dispReverse;
+	this.display = display;
+	this.advance = advance;
+	this.back = back;
+	this.show = show;
+}
+function find(element) {
+	var currNode = this.head;
+	while((currNode.next) && (currNode.element != element)) {
+		currNode = currNode.next;
+	}
+	if (currNode.element == element) {
+		return currNode;
+	} else {
+		return null;
+	}
+}
+function insert(element, after) {
+	var currNode = this.find(after);
+	var node = new Node(element);
+	if (currNode) {
+		node.previous = currNode;
+		node.next = currNode.next;
+		if (currNode.next) {
+			currNode.next.previous = node;
+		}
+		currNode.next = node;
+	}
+}
+function display() {
+	var currNode = this.head;
+	while(currNode.next) {
+		console.log(currNode.next.element);
+		currNode = currNode.next;
+	}
+}
+function remove(element) {
+	var currNode = this.find(element);
+	if (currNode) {
+		if (currNode.previous) {
+			currNode.previous.next = currNode.next;
+		}
+		if (currNode.next) {
+			currNode.next.previous = currNode.previous;
+		}
+		currNode.next = null;
+		currNode.previous = null;
+	}
+}
+function findLast() {
+	var currNode = this.head;
+	while(currNode.next) {
+		currNode = currNode.next;
+	}
+	return currNode;
+}
+function dispReverse() {
+	var currNode = this.findLast();
+	console.log(currNode.element);
+	while(currNode.previous) {
+		currNode = currNode.previous;
+		if (currNode.previous) {
+			console.log(currNode.element);
+		}
+	}
+}
+function advance(n) {
+	for(var i=0; i<n; i++) {
+		this.currNode = this.currNode.previous;
+	}
+}
+function back(n) {
+	for(var i=0; i<n; i++) {
+		this.currNode = this.currNode.next;
+	}
+}
+function show() {
+	console.log(this.currNode.element);
+}
+var linkList = new LList();
+linkList.insert("111", "head");
+linkList.insert("222", "111");
+linkList.insert("333", "222");
+linkList.insert("444", "333");
+linkList.insert("666", "444");
+linkList.insert("555", "444");
+linkList.display();
+linkList.remove("111");
+linkList.display();
+linkList.dispReverse();
+*/
+
+//循环链表解决围圈自杀问题
+/*function Node(name) {
+	this.name = name;
+	this.next = null;
+}
+function LList() {
+	this.head = null;
+	this.currNode = this.head;
+	this.find = find;
+	this.insert = insert;
+	this.kill = kill;
+	this.display = display;
+	this.length = 0;
+}
+function find(name) {
+	this.currNode = this.head;
+	while(this.currNode.name!=name && this.currNode.next!=this.head) {
+		this.currNode = this.currNode.next;
+	}
+	if (this.currNode.name == name) {
+		return this.currNode;
+	} else {
+		return null;
+	}
+}
+function insert(name, after) {
+	if (this.head == null) {
+		this.head = new Node(name);
+		this.head.next = this.head;
+		this.currNode = this.head;
+		this.length++;
+	} else {
+		this.currNode = this.find(after);
+		var newNode = new Node(name);
+		if (this.currNode) {
+			newNode.next = this.currNode.next;
+			this.currNode.next = newNode;
+			this.length++;
+		}
+	}
+}
+function display() {
+	if (this.length != 0) {
+		this.currNode = this.head;
+		do {
+			console.log(this.currNode.name);
+			this.currNode = this.currNode.next;
+		} while(this.currNode != this.head);
+	}
+}
+function kill(n) {
+	this.currNode = this.head;
+	var x = 2;
+	while (this.length >= n) {
+		for(var j=1; j<n-1; j++) {
+			this.currNode = this.currNode.next;
+		}
+		console.log("杀掉" + this.currNode.next.name + "号");
+		this.currNode.next = this.currNode.next.next;
+		this.currNode = this.currNode.next;
+		//上两行代码有问题？ how to debug?
+		this.length--;
+	}
+	console.log("余下未死的人是：");
+	this.display();
+}
+function compute(m, n) {
+	var list = new LList();
+	for(var i=1; i<=m; i++){
+		list.insert(i, i-1);
+	}
+	console.log("length: " + list.length);
+	list.display();
+	list.kill(n);
+}
+
+compute(5,3);
+*/
+
+
+//字典  数组索引方式
+/*function Dictionary() {
+	this.dataStore = new Array();
+	this.add = add;
+	this.find = find;
+	this.remove = remove;
+	this.showAll = showAll;
+	this.count = count;
+	this.clear = clear;
+}
+function add(key, value) {
+	this.dataStore[key] = value;
+}
+function find(key) {
+  return  this.dataStore[key];
+}
+function remove(key) {
+	delete this.dataStore[key];
+}
+function showAll() {
+	this.dataStore.sort();
+	for (var key in this.dataStore) {
+		console.log(key + "->" + this.dataStore[key]);
+	}
+}
+function count() {
+	var n = 0;
+	for(var key in this.dataStore) {
+		n++;
+	}
+	return n;
+}
+function clear() {
+	for(var key in this.dataStore) {
+		delete this.dataStore[key];
+	}
+}
+
+
+var pbook = new Dictionary(); 
+pbook.add("Raymond","123"); 
+pbook.add("David", "345"); 
+pbook.add("Cynthia", "456"); 
+//console.log("Number of entries: " + pbook.count()); 
+console.log("David's extension: " + pbook.find("David")); 
+pbook.showAll(); 
+//pbook.clear(); 
+//console.log("Number of entries: " + pbook.count());
+*/
+//字典练习1
+/*function Dictionary() {
+	this.dataStore = [];
+	this.add = add;
+	this.remove = remove;
+	this.count = count;
+	this.clear = clear;
+	this.find = find;
+	this.showAll = showAll;
+}
+function add(key, value) {
+	this.dataStore[key] = value;
+}
+function remove(key) {
+	delete this.dataStore[key];
+}
+function count() {
+	var n = 0;
+	for(var key in this.dataStore) {
+		n++;
+	}
+	return n;
+}
+function clear() {
+	for(var key in this.dataStore) {
+		delete this.dataStore[key];
+	}
+}
+function find(key) {
+	return this.dataStore[key];
+}
+function showAll() {
+	this.dataStore.sort();
+	for(var key in this.dataStore) {
+		console.log(key + "->" + this.dataStore[key]);
+	}
+}
+
+var str = "the brown fox jumped over the blue fox";
+var arr = str.split(" ");
+var dic = new Dictionary();
+for(var i=0; i<arr.length; i++) {
+	var value = dic.find(arr[i]);
+	if (value) {
+		value++;
+		dic.add(arr[i], value);
+	}else {
+		dic.add(arr[i], 1);
+	}
+}
+dic.showAll();
+*/
+
+
+//散列
+function HashTable() {
+	this.table = new Array(137);
+	this.simpleHash = simpleHash;
+	this.showDistro = showDistro;
+	this.put = put;
+	this.get = get;
+}
+function simpleHash() {
+
+}
+function showDistro() {
+
+}
+function put() {
+
+}
+function get() {
+
+}
+
+
+//集合
+/*function Set() {
+	this.dataStore = [];
+	this.size = size;
+	this.add = add;
+	this.remove = remove;
+	this.size = size;
+	this.union = union;
+	this.intersect = intersect;
+	this.subset = subset;
+	this.difference = difference;
+	this.show = show;
+	this.contains = contains;
+	this.higher = higher;
+	this.lower = lower;
+}
+function size() {
+	return this.dataStore.length;
+}
+function add(data) {
+	if (this.dataStore.indexOf(data) < 0) {
+		this.dataStore.push(data);
+		return true;
+	} else {
+		return false;
+	}
+}
+function remove(data) {
+	var index = this.dataStore.indexOf(data);
+	if(index > -1) {
+		this.dataStore.splice(index);
+	} else {
+		return false;
+	}
+}
+function show() {
+	return this.dataStore;
+}
+function contains(data) {
+	if (this.dataStore.indexOf(data) > -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+function union(set) {
+	var tempSet = new Set();
+	for(var i = 0; i < this.dataStore.length; i++) {
+		tempSet.add(this.dataStore[i]);
+	}
+	for(var i = 0; i < set.dataStore.length; i++) {
+		if (!tempSet.contains(set.dataStore[i])) {
+			tempSet.add(set.dataStore[i]);
+		}
+	}
+	return tempSet;
+}
+function intersect(set) {
+	var tempSet = new Set();
+	for(var i=0; i<this.dataStore.length; i++) {
+		if (set.contains(this.dataStore[i])) {
+			tempSet.add(this.dataStore[i]);
+		}
+	}
+	return tempSet;
+}
+//子集
+function subset(set) {
+	if (set.size() <= this.size()) {
+		for(var i=0; i<set.size(); i++) {
+			if (!this.contains(set.dataStore[i])) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+//补集  set是this 的真子集
+function difference(set) {
+	var tempSet = new Set();
+	for(var i=0; i<this.size(); i++) {
+		if (!set.contains(this.dataStore[i])) {
+			tempSet.add(this.dataStore[i]);
+		}
+	}
+	return tempSet;
+}
+function higher(element) {
+	this.dataStore.sort(function(a, b) {
+		return a-b;
+	});
+	return this.dataStore.filter(function(data) {
+		return data > element;
+	})[0];
+}
+function lower(element) {
+	this.dataStore.sort(function(a, b){
+		return b-a;
+	});
+	return this.dataStore.filter(function(data){
+		return data < element;
+	})[0];
+}
+
+var set = new Set();
+set.add(1);
+set.add(4);
+set.add(2);
+set.add(0);
+console.log(set.show());
+console.log(set.higher(1));
+console.log(set.lower(2));
+*/
+
+
+
+/*var cis = new Set();
+var it = new Set(); 
+cis.add("111"); 
+cis.add("222"); 
+cis.add("333"); 
+it.add("111"); 
+it.add("222"); 
+it.add("333"); 
+it.add("444"); 
+var diff = new Set(); 
+diff = cis.intersect(it);
+//diff = cis.difference(it); 
+console.log("[" + cis.show() + "] difference [" + it.show()        + "] -> [" + diff.show() + "]");
+console.log(diff.show());*/
+
+//二叉树
+/*function Node(data, left, right) {
+	this.data = data;
+	this.left = left;
+	this.right = right;
+	this.show = show;
+	this.nodeCount = nodeCount;
+	this.lineCount = lineCount;
+}
+function show() {
+	return this.data;
+}
+function BTS() {
+	this.root = null;
+	this.insert = insert;
+	this.find = find;
+	this.remove = remove;
+}
+function insert(data) {
+	var newNode = new Node(data, null, null);
+	if (this.root == null) {
+		this.root = newNode;
+	} else {
+		var current = this.root;
+		while(true) {
+			parent = current;
+			if (data < current.data) {
+				current = current.left;
+				if (current == null) {
+					parent.left = newNode;
+					break;
+				}
+			} else {
+				current = current.right;
+				if (current == null) {
+					parent.right = newNode;
+					break;
+				}
+			}
+		}
+	}
+}
+//中序遍历   有问题
+function inOrder(node) {
+	if (!(node == null)) {
+		console.log(node.data);
+		inOrder(node.left);
+		inOrder(node.right);
+	}
+}
+//先序遍历
+function preOrder(node) {
+	if (!(node == null)) {
+		preOrder(node.left);
+		console.log(node.data);
+		preOrder(node.right);
+	}
+}
+//后续遍历
+function lastOrder(node) {
+	if (!(node == null)) {
+		lastOrder(node.right);
+		console.log(node.data);
+		lastOrder(node.left);
+	}
+}
+function find(data) {
+	var current = this.root;
+	while(current != null) {
+		if (current.data == data) {
+			return current;
+		} else if(data < current.data) {
+			current = current.left;
+		} else {
+			current = current.right;
+		}
+	}
+	return null;
+}
+function getMin(node) {
+	var current = node;
+	while(current.left != null) {
+		current = current.left;
+	}
+	return current.data;
+}
+function getMax(node) {
+	var current = node;
+	while(current.right != null) {
+		current = current.right;
+	}
+	return current.data;
+}
+//删除  递归删除
+function remove(data) {
+	this.root	= removeNode(this.root, data);
+}
+function removeNode(node, data) {
+	if (node == null) {
+		return null;
+	}
+	//找
+	if (node.data == data) {
+		if (node.left == null && node.right == null) {
+			return null;
+		}else if(node.right == null) {
+			return node.left;
+		}else if(node.left == null){
+			return node.right;
+		}else {
+			node.data = getMin(node.right);
+			node.right = removeNode(node.right, node.data);
+			return node;
+		}
+	}else if(data < node.data) {
+	//递归  左删除
+		node.left = removeNode(node.left, data);
+		return node;
+	}else {
+	//递归  右删除
+		node.right = removeNode(node.right, data);
+		return node;
+	}
+}
+function nodeCount(node) {
+	if (node == null) {
+		return 0;
+	}else {
+		var left = nodeCount(node.left);
+		var right = nodeCount(node.right);
+		return (1 + left + right);
+	}
+}
+function lineCount(node) {
+	if (node == null) {
+		return 0;
+	}else {
+		var left=0, right=0;
+		if (node.left) {
+			left = lineCount(node.left) + 1;
+		}
+		if (node.right) {
+			right = lineCount(node.right) + 1;
+		}
+	}
+	return (left + right);
+}
+var bts = new BTS();
+bts.insert(50);
+bts.insert(5);
+bts.insert(10);
+bts.insert(15);
+bts.insert(60);
+bts.insert(70);
+bts.insert(80);
+console.log("-------------");
+inOrder(bts.root);
+console.log("-------------");
+preOrder(bts.root);
+console.log("-------------");
+lastOrder(bts.root);
+console.log(bts.find(50));
+bts.remove(50);
+bts.remove(60);
+console.log(bts.root.data);
+
+console.log(nodeCount(bts.root));
+console.log(lineCount(bts.root));
+
+//二叉树练习
+function Node(data, left, right) {
+	this.data = data;
+	this.count = 1;
+	this.left = left;
+	this.right = right;
+}
+function BTS() {
+	this.root = null;
+	this.add = add;
+	this.find = find;
+	this.remove = remove;
+}
+function add(data) {
+	var node = this.find(data);
+	if (node) {
+		node.count++;
+	}else {
+		var current = this.root;
+		node = new Node(data, null, null);
+		if (this.root == null) {
+			this.root = node;
+		}else {
+			while(true) {
+				var parent = current;
+				if (current.data > data) {
+					current = current.left;
+					if (current == null) {
+						parent.left = node;
+						break;
+					}
+				}else if(current.data < data) {
+					current = current.right;
+					if (current == null) {
+						parent.right = node;
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+function find(data) {
+	var current = this.root;
+	while(current != null) {
+		if (current.data == data) {
+			return current;
+		}else if (data > current.data) {
+			current = current.right;
+		}else {
+			current = current.left;
+		}
+	}
+	return null;
+}
+function remove(data) {
+	this.root = removeNode(this.root, data);
+}
+function removeNode(node, data) {
+	if (node.data == data) {
+		if(node.left == null && node.right == null) {
+			return null;
+		} else if (node.left == null) {
+			return node.right;
+		} else if (node.right == null) {
+			return node.left;
+		} else {
+			node.data = findMin(node.right).data;
+			node.right = removeNode(node.right, node.data);
+			return node;
+		}
+	}else if (data > node.data) {
+		node.right = removeNode(node.right, data);
+		return node;
+	}else {
+		node.left = removeNode(node.left, data);
+		return node;
+	}
+}
+var bts = new BTS();
+bts.add(50);
+bts.add(5);
+bts.add(10);
+bts.add(15);
+bts.add(60);
+bts.add(70);
+bts.add(70);
+bts.add(70);
+bts.add(80);
+bts.add(80);
+console.log(bts.find(80).count);
+console.log(bts.find(50).count);
+console.log(bts.find(70).count);
+*/
+//节点数  线数
+
+function CArray(numElements) {
+	this.dataStore = [];
+	this.pos = 0;
+	this.numElements = numElements;
+	this.insert = insert;
+	this.toString = toString;
+	this.clear = clear;
+	this.setData = setData;
+	this.swap = swap;
+	this.bubbleSort = bubbleSort;
+	this.selectionSort = selectionSort;
+	this.insertSort = insertSort;
+	this.gaps = [];
+	this.setGaps = setGaps;
+	this.shellSort = shellSort;
+	this.shellSort1 = shellSort1;
+/*	for(var i=0; i<this.numElements; i++) {
+		this.dataStore[i] = i;
+	}*/
+}
+function setData() {
+	for(var i =0; i<this.numElements; i++) {
+		this.dataStore[i] = Math.floor(Math.random() * (this.numElements + 1));
+		//console.log(i);
+	}
+}
+function setGaps(arr) {
+    this.gaps = arr;    
+  }
+
+function clear() {
+	for(var i=0; i<this.numberElements; i++) {
+		this.dataStore[i] = 0;
+	}
+}
+function insert(element) {
+	this.dataStore[this.pos++] = element;
+}
+function toString() {
+	var str ="";
+	for(var i=0; i<this.numElements; i++) {
+		str += this.dataStore[i] + " ";
+		if (i % 10 == 0 & i > 0) {
+			str += "\n";
+		}
+	}
+	return str;
+}
+function swap(arr, index1, index2) {
+	var temp = arr[index1];
+	arr[index1] = arr[index2];
+	arr[index2] = temp;
+}
+//冒泡排序
+function bubbleSort() {
+	for(var outer = this.numElements; outer >= 2; outer--) {
+		var flag = true;
+		for(var inner = 0; inner < outer-1; inner++) {
+			if (this.dataStore[inner] > this.dataStore[inner+1]) {
+				swap(this.dataStore, inner, inner+1);
+				//每一步排序结果打印
+				flag = false;
+			}
+		}
+		if (flag) {
+			break;
+		}
+	}
+}
+//选择排序
+function selectionSort() {
+	for(var outer = 0; outer < this.numElements-1; outer++) {
+		var min = outer,
+				flag = false;
+		for(var inner = outer+1; inner < this.numElements; inner++) {
+			if (this.dataStore[min] > this.dataStore[inner]) {
+				min = inner;
+				flag = true;
+			}
+		}
+		if (flag) {
+			swap(this.dataStore, outer, min);
+			//每步排序结果打印
+		}
+	}
+}
+//插入排序
+/*function insertSort() {
+	var inner, temp;
+	for(var outer=1; outer<this.dataStore.length; outer++) {
+		temp = this.dataStore[outer];
+		inner = outer;
+		while(inner>0 && (this.dataStore[inner-1] >= temp)) {
+			this.dataStore[inner] = this.dataStore[inner-1];
+			inner--;
+		}
+		this.dataStore[inner] = temp;
+	}
+}*/
+function insertSort() {
+	var temp, inner;
+	for(var outer=1; outer<this.numElements; outer++) {
+		temp = this.dataStore[outer];
+		inner = outer;
+		while((this.dataStore[inner-1] >= temp) && inner>0) {
+			this.dataStore[inner] = this.dataStore[inner-1];
+			inner--;
+		}
+		this.dataStore[inner] = temp;
+		//排序过程
+	}
+}
+//希尔排序
+function shellSort() {
+	for(var i=0; i<this.gaps.length; i++) {
+		for(var j=this.gaps[i]; j<this.numElements; j++) {
+			var temp = this.dataStore[j];
+			for(var k=j; k>=this.gaps[i] && temp<this.dataStore[k-this.gaps[i]]; k-=this.gaps[i]) {
+				this.dataStore[k] = this.dataStore[k-this.gaps[i]];
+			}
+			this.dataStore[k] = temp;
+		}
+	}
+}
+//动态计算间隔的希尔排序
+function shellSort1() {
+	var n = this.numElements;
+	var h = 1;
+	while(h < n / 3) {
+		h = 3 * h + 1;
+	}
+	while(h >= 1) {
+		for(var i=h; i<n; i++) {
+			for(var j=i; j>=h && this.dataStore[j] < this.dataStore[j-h]; j-=h) {
+				swap(this.dataStore, j, j-h);
+			}
+		}
+		h = (h-1) / 3;
+	}
+}
+//归并排序
+function mergeSort() {
+
+}
+//快速排序
+function quickSort(array) {
+	var lesser = [],
+			greater = [];
+	var first = array[0];
+	if (array.length == 0) {
+		return [];
+	}
+	for(var i=1; i<array.length; i++) {
+		if (array[i] < first) {
+			lesser.push(array[i]);
+		} else {
+			greater.push(array[i]);
+		}
+	}
+	return quickSort(lesser).concat(first, quickSort(greater));
+}
+//顺序查找
+
+//二分查找
+
+
+var arr = new CArray(10);
+arr.setData();
+arr.setGaps([5,3,1]);
+//console.log(arr.dataStore);
+/*var ts, te;
+ts = new Date().getTime();
+arr.bubbleSort();
+te = new Date().getTime();
+console.log("冒泡：" + (te - ts));
+ts = new Date().getTime();
+arr.selectionSort();
+te = new Date().getTime();
+console.log("选择：" + (te - ts));
+ts = new Date().getTime();
+arr.insertSort();
+te = new Date().getTime();
+console.log("插入：" + (te - ts));
+ts = new Date().getTime();
+arr.shellsort();
+te = new Date().getTime();
+console.log("希尔：" + (te - ts));    
+
+arr.shellSort1();
+console.log(arr.dataStore);
+arr.dataStore = quickSort(arr.dataStore);
+console.log(arr.dataStore);*/
+
+//排序效率：希尔(动态规划希尔)  选择 冒泡  插入
+
+
+//散列   哈希
+/*function HashTable() {
+	this.table = new Array(137);
+	this.values = new Array();
+	this.simpleHash = simpleHash;
+	this.betterHash = betterHash;
+	this.showDistro = showDistro;
+	this.put = put;
+	this.get = get;
+	for(var i=0; i<this.table.length; i++) {
+		this.table[i] = [];
+	}
+}
+function simpleHash(data) {
+	var total = 0;
+	for(var i=0; i<data.length; i++) {
+		total += data.charCodeAt(i);
+	}
+	return total % this.table.length;
+}
+function put(data) {
+	var pos = this.simpleHash(data);
+	this.table[pos][this.table[pos].length] = data;
+}
+function showDistro() {
+	var n = 0;
+	for(var i=0; i<this.table.length; i++) {
+		if (this.table[i][0] != undefined) {
+			console.log(i + " : " + this.table[i]);
+		}
+	}
+}
+//霍纳算法   没有用？？？
+function betterHash(data) {
+	const H = 37;
+	var total = 0;
+	for(var i=0; i<data.length; i++) {
+		total += H * total + data.charCodeAt(i);
+	}
+	total = total % this.table.length;
+	if (total < 0) {
+		total += this.table.length - 1;
+	}
+	return parseInt(total);
+}
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function genStuData(arr) {
+	for(var i=0; i<arr.length; i++) {
+		var num = "";
+		for(var j=1; j<=9; j++) {    //生成九位随机ID
+			num += Math.floor(Math.random() * 10);
+		}
+		num +=  getRandomInt(50, 100);
+		arr[i] = num;
+	}
+}
+function get(key) {
+	var index = 0;
+	var pos = this.simpleHash(key);
+	if (this.table[pos][index] == key) {
+		return this.table[pos][index+1];
+	}else {
+		while(this.table[pos][index] != key) {
+			index += 2;
+		}
+		return this.table[pos][index+1];
+	}
+	return undefined;
+}
+function buildChains() {
+	for(var i=0; i<this.table.length; i++) {
+		this.table[i] = new Array();
+	}
+}
+// 线性检索法
+function put(key, data) {
+	var pos = this.simpleHash(key);
+	if (this.table[pos] == undefined) {
+		this.table[pos] = key;
+		this.values[pos] = data;
+	}else {
+		while (this.table[pos] != undefined) {
+			pos++;
+		}
+		this.table[pos] = key;
+		this.values[pos] = data;
+	}
+}
+var numStudents = 20;
+var arr = new Array(numStudents);
+genStuData(arr);
+for(var i=0; i<arr.length; i++) {
+	console.log(arr[i].substring(0,9) + "  " + arr[i].substring(9));
+}
+var hTable = new HashTable();
+for(var i=0; i<arr.length; i++) {
+	hTable.put(arr[i].substring(0,9));
+}
+hTable.showDistro();
+
+
+
+//碰撞测试
+var someNames = [ "David",
+									"Jennifer",
+									"Donnie",
+									"Raymond",
+									"Cynthia",
+									"Mike",
+									"Clayton",
+									"Danny",
+									"Jonathan"]; 
+var hTable = new HashTable(); 
+for (var i = 0; i < someNames.length; ++i) {    
+	hTable.put(someNames[i]); 
+}
+hTable.showDistro();
+*/
+
+//图
+function Vertex() {
+	this.label = label;
+}
+function Graph(v) {
+	this.vertices = v;
+	this.edges = 0;
+	this.adj = [];
+	this.addEdge = addEdge;
+	this.toString = toString;
+	this.showGraph = showGraph;
+	this.marked = [];
+	this.dfs = dfs;
+	for(var i=0; i<this.vertices; i++) {
+		this.adj[i] = [];
+		this.marked[i] = false;
+	}
+}
+function addEdge(v, w) {
+	this.adj[v].push(w);
+	this.adj[w].push(v);
+	this.edges++;
+}
+function showGraph() {
+	for(var i=0; i<this.vertices; i++) {
+		var str = "";
+		str += i + "->";
+		for(var j=0; j<this.vertices; j++) {
+			if (this.adj[i][j] != undefined) {
+				str += this.adj[i][j] +' ';
+			}
+		}
+		console.log(str);
+	}
+}
+//深度优先遍历
+function dfs(v) {
+	/*this.marked[v] = true;
+	for(var w in this.adj[v]) {   //0   1
+		if (!this.marked[this.adj[v][w]]) {
+			console.log(this.adj[v][w]);
+			this.dfs(this.adj[v][w]);
+		}
+	}*/
+	this.marked[v] = true;
+	for(var w in this.adj[v]) {
+		if (!this.marked[this.adj[v][w]]) {
+			this.dfs(this.adj[v][w]);
+		}
+	}
+}
+//广度优先遍历
+function bfs(s) {
+	var queue = [];
+	this.marked[s] = true;
+	queue.push(s); // 添加到队尾
+	while (queue.length > 0) {
+		var v = queue.shift(); // 从队首移除
+		if (v == undefined) {
+			print("Visisted vertex:  " + v);
+		}
+		for each(var w in this.adj[v]) {
+			if (!this.marked[w]) {
+				this.edgeTo[w] = v;
+				this.marked[w] = true;
+				queue.push(w);
+			}
+		}
+	}
+}
+
+
+
+
+
+var g = new Graph(5);
+g.addEdge(0,1);
+g.addEdge(0,2);
+g.addEdge(1,3);
+g.addEdge(2,4);
+g.showGraph();
+g.dfs(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</head>
+<<!-- body -->>
+	
+</body>
+</html>

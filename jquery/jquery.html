@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>jquery</title>
+	<style type="text/css">
+		span {
+			width: 100px;
+			height: 40px;
+			background-color: pink;
+			cursor: pointer;
+		}
+	</style>
+	<script src="./jquery-3.3.1.js"></script>
+	<script>
+		/*$(function(){
+			$("#form").validate({
+					rules: {
+					username: {
+						required: true,
+						minlength: 2
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					url: "url",
+					comment: "required"，
+					valcode: {formula: "7+9"}
+				}
+			});
+		});
+
+		$.validator.addMethod(
+				"formula",
+				function(value, element, param) {
+					return value == eval(param);
+				},
+				"请输入正确结果"
+		);*/
+		$(document).ready(function(){
+			//alert("aaa");
+			/*$("#comment").click(function() {
+				//alert("aaa");
+			})*/
+
+			var $comment = $("#comment")
+			$("#bigger").click(function(){
+				//$("#comment").height($comment.height() + 50);
+				if($comment.is(":animated")) {
+					alert("aaa");
+				}else {
+					$("#comment").animate({height: "+=50"}, 1000);				
+				}
+			});
+
+
+		});
+		
+	</script>
+</head>
+<body>
+	<form  id="form">
+		<!-- <input type="text" class="{validate: {required: true, email: true, messages: {required: '请输入电子邮件', email: '请检查电子邮件格式'}}}" /> -->
+		用户名： <input type="text" name="username">
+		密码：<input type="password" name="password">
+		<textarea id="comment" rows="8" cols="20">asdfgdfgsgdbsdfgsdfg</textarea>
+		<span id="bigger">bigger</span>
+		<span id="smaller">smaller</span>
+	</form>
+</body>
+</html>

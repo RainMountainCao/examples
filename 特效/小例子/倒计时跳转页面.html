@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>跳转页面</title>
+	<style>
+		.box{
+			width: 300px;
+			height: 180px;
+			background-color: pink;
+			margin: 50px auto;
+			line-height: 80px;
+			text-align: center;
+			padding-top: 30px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var count = 5;
+			var box = document.getElementsByTagName("div")[0];
+			box.innerHTML = "还有"+count+"秒自动跳转到微软必应";
+			var interval = setInterval(fun,1000);
+			function fun(){
+				if (count==0) {
+					window.location.href = "http://cn.bing.com";
+					clearInterval(interval);
+					return;
+				}
+				count--;
+				box.innerHTML = "还有"+count+"秒自动跳转到微软必应";
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		
+	</div>
+</body>
+</html>

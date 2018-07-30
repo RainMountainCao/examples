@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>无缝轮播</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.box{
+			position: relative;
+			width: 500px;
+			height: 200px;
+			background-color: yellow;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		#alterImg{
+			position: relative;
+			width: 1200px;
+			height: 200px;
+		}
+		img{
+			vertical-align: top;   /*取消图片底部的三像素距离*/
+		}
+		ul{
+			position: absolute;
+			list-style: none;
+		}
+		ul li{
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div id="alterImg">
+			<ul>
+				<li><img src="images/01.jpg" alt="" /></li>
+				<li><img src="images/02.jpg" alt="" /></li>
+				<li><img src="images/03.jpg" alt="" /></li>
+				<li><img src="images/04.jpg" alt="" /></li>
+				<li><img src="images/01.jpg" alt="" /></li>
+				<li><img src="images/02.jpg" alt="" /></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+
+<script>
+	window.onload = function(){
+		function getClass(className){
+			if (document.getElementsByClassName) {
+				return document.getElementsByClassName(className);
+			}
+			var tagArr = document.getElementsByTagName("*");
+			var classArr = new Array();
+			for (var i = tagArr.length - 1; i >= 0; i--) {
+				var classNameArr = tagArr[i].className.split(" ");
+				for (var i = classNameArr.length - 1; i >= 0; i--) {
+					if(classNameArr[i]==className){
+						classArr.push(tagArr[i]);
+					}
+				}
+			}
+			return classArr;
+		}
+		function $(str){
+			var s = str.charAt(0);
+			var ss = str.slice(1);
+			switch(s){
+				case "#": return document.getElementById(ss);
+					break;
+				case ".": return getClass(ss);
+					break;
+				default:
+					return document.getElementsByTagName(str);
+			}
+		}
+
+		var interval = setInterval(fun,10);
+		var count = 0;
+		function fun(){
+			count -= 1;
+			count = count <= (-1300) ? -100 : count;
+			$("ul")[0].style.left = count + "px";
+		}
+
+		$(".box")[0].onmouseover = function(){
+			//暂停
+			clearInterval(interval);
+		}
+		$(".box")[0].onmouseout = function(){
+			//继续
+			interval = setInterval(fun,10);
+		}
+		
+
+
+
+	}
+</script>
+
+
+
+
+
+
+
+
+

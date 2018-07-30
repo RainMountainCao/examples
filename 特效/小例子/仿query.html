@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>封装</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div class="box"></div>
+	<div id="bb"></div>
+	<div></div>
+	<div class="box box1"></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div class="box"></div>
+	<div></div>
+</body>
+</html>
+
+<script>
+	window.onload = function(){
+		function getClass(className){
+			if (document.getElementsByClassName) {
+				return document.getElementsByClassName(className);
+			}
+			var tagArr = document.getElementsByTagName("*");
+			var classArr = new Array();
+			for (var i = tagArr.length - 1; i >= 0; i--) {
+				var classNameArr = tagArr[i].className.split(" ");
+				for (var i = classNameArr.length - 1; i >= 0; i--) {
+					if(classNameArr[i]==className){
+						classArr.push(tagArr[i]);
+					}
+				}
+			}
+			return classArr;
+		}
+		function $(str){
+			var s = str.charAt(0);
+			var ss = str.slice(1);
+			switch(s){
+				case "#": return document.getElementById(ss);
+					break;
+				case ".": return getClass(ss);
+					break;
+				default:
+					return document.getElementsByTagName(str);
+			}
+		}
+		$("#bb").style.background = "purple";
+		$(".box")[0].style.background = "blue";
+		$(".box")[1].style.background = "blue";
+		$(".box")[2].style.background = "blue";
+		$(".box1")[0].style.background = "yellow";
+	}
+</script>
+
+
+
+
+
+
+
+
+

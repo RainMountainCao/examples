@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>2D3D</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+		body>header {
+			line-height: 60px;
+			text-align: center;
+			font-size: 24px;
+			font-weight: 700;
+			border: 2px solid #ccc;
+			
+		}
+		body>section {
+			border: 2px solid #ccc;
+		}
+		section>header {
+			line-height: 40px;
+			background-color: #ccc;
+			font-size: 18px;
+			padding-left: 40px;
+		}
+		section>section {
+			height: 300px;
+			display: flex;
+		}
+		
+		.box1 {
+			margin: auto 40px;
+			width: 200px;
+			height: 200px;
+			background-color: skyblue;
+			cursor: pointer;
+			transition: all 1s;
+		}
+
+		body>section:nth-of-type(1) .box1:hover{
+			transform: translate(40px, 30px);
+			/* transform: translateX(40px);
+			transform: translateY(30px); */
+		}
+
+		body>section:nth-of-type(2) .box1:hover{
+			transform: scale(1.2);
+			/* transform: scaleX(0.5);
+			transform: scaleY(0.5); */
+		}
+
+		body>section:nth-of-type(3) .box1:nth-child(1):hover{
+			transform: rotate(36deg);
+		}
+		body>section:nth-of-type(3) .box1:nth-child(2):hover{
+			transform: rotateX(180deg);
+		}
+		body>section:nth-of-type(3) .box1:nth-child(3):hover{
+			transform: rotateY(180deg);
+		}
+
+		body>section:nth-of-type(4) .box1:nth-child(1):hover{
+			transform: skew(45deg);
+		}
+		body>section:nth-of-type(4) .box1:nth-child(2):hover{
+			transform: skewX(45deg);
+		}
+		body>section:nth-of-type(4) .box1:nth-child(3):hover{
+			transform: skewY(45deg);
+		}
+
+		body>section:nth-of-type(5) .box1:nth-child(1){
+			transform-origin: top left;
+		}
+		body>section:nth-of-type(5) .box1:nth-child(1):hover{
+			transform: rotate(45deg);
+		}
+		body>section:nth-of-type(5) .box1:nth-child(2){
+			transform-origin: bottom right;
+		}
+		body>section:nth-of-type(5) .box1:nth-child(2):hover{
+			transform: rotate(45deg);
+		}
+		body>section:nth-of-type(5) .box1:nth-child(3){
+			transform-origin: 20px 20px;
+		}
+		body>section:nth-of-type(5) .box1:nth-child(3):hover{
+			transform: rotate(45deg);
+		}
+
+		body>section {
+			perspective: 200px;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(1){
+			transform-style: preserve-3d;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(1):hover{
+			transform: translateZ(20px);
+		}
+		body>section:nth-of-type(6) .box1:nth-child(2){
+			transform-style: preserve-3d;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(2):hover{
+			transform: translateZ(-20px);
+		}
+		body>section:nth-of-type(6) .box1:nth-child(3){
+			transform-style: preserve-3d;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(3):hover{
+			transform: rotateZ(45deg);
+		}
+		body>section:nth-of-type(6) .box1:nth-child(4){
+			transform-style: preserve-3d;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(4):hover{
+			transform: rotateX(45deg);
+		}
+		body>section:nth-of-type(6) .box1:nth-child(5){
+			transform-style: preserve-3d;
+		}
+		body>section:nth-of-type(6) .box1:nth-child(5):hover{
+			transform: rotateY(45deg);
+		}
+
+		body>section:nth-of-type(7) section{
+			height: 560px;
+			display: flex;
+			justify-content: space-around;
+			perspective: 1000px;
+		}
+		body>section:nth-of-type(7) .box2{
+			height: 500px;
+			width: 300px;
+			background-color: yellow;
+			margin: 10px;
+			position: relative;
+			
+			transform-style: preserve-3d;
+			transition: all 5s;
+		}
+		.z,.f{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		.z{
+			background: blue/* url(images/2.jpg) center center / cover no-repeat */;
+			transform: translateZ(20px);
+		}
+		.f {
+			background: url(images/6.jpg) center center / cover no-repeat;
+			transform: translateZ(-20px);
+		}
+		body>section:nth-of-type(7) .box2:hover {
+			transform: rotateY(180deg);
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<header>2D/3D</header>
+	<section>
+		<header> (平移) transform: translate(40px, 30px);</header>
+		<section>
+			<div class="box1"></div>
+		</section>
+	</section>
+	<section>
+		<header>(缩放) transform: scale(1.2);</header>
+		<section>
+			<div class="box1"></div>
+		</section>
+	</section>
+	<section>
+		<header>(旋转) transform: rotate(36deg); </header>
+		<section>
+			<div class="box1">rotate(36deg)</div>
+			<div class="box1">rotateX(180deg)</div>
+			<div class="box1">rotate(180deg)</div>
+		</section>
+	</section>
+	<section>
+		<header>斜切</header>
+		<section>
+			<div class="box1">transform: skew(45deg);</div>
+			<div class="box1">transform: skewX(45deg);</div>
+			<div class="box1">transform: skewY(45deg);</div>
+		</section>
+	</section>
+	<section>
+		<header>变换的轴心点  transform-origin: top left;</header>
+		<section>
+			<div class="box1">top left</div>
+			<div class="box1">bottom right</div>
+			<div class="box1">20px 20px</div>
+		</section>
+	</section>
+	<section>
+		<header>3D transform-style:preserve-3d;</header>
+		<section>
+			<div class="box1">translateZ(20px)</div>
+			<div class="box1">translateZ(-20px)</div>
+			<div class="box1">rotateZ(45deg)</div>
+			<div class="box1">rotateX(45deg)</div>
+			<div class="box1">rotateY(45deg)</div>
+		</section>
+	</section>
+	<section>
+		<header>翻牌</header>
+		<section>
+			<div class="box2"><div class="z"></div><div class="f"></div></div>
+			<div class="box2"><div class="z"></div><div class="f"></div></div>
+		</section>
+	</section>
+</body>
+</html>

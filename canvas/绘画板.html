@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>彩虹堂绘画板</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html {
+			height: 100%;
+		}
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+		.canvas-wrapper {
+			width: 78%;
+			height: 98%;
+			box-sizing: border-box;
+			margin-top: 0.5%;
+			margin-left: 21.5%;
+			border: 10px solid #ccc;
+			border-radius: 30px;
+			cursor: url(#pen);
+		}
+		aside {
+			float: left;
+			width: 20.5%;
+			height: 98%;
+			box-sizing: border-box;
+			border-radius: 30px;
+			padding: 40px 40px;
+			margin-left: 0.5%;
+			background-color: #ccc;
+			overflow: hidden;
+		}
+		.pen-show-wrapper {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			border: 1px solid rgba(0,0,0,0.2);
+		}
+		.pen-style {
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 20px;
+		}
+		.pen-style > span {
+			display: block;
+			width: 60px;
+			height: 26px;
+
+			margin: 5px;
+			text-align: center;
+			border-radius: 2px;
+			border: 1px solid rgba(0,0,0,0.2);
+
+			cursor: pointer;
+		}
+		.hover:hover {
+			background-color: rgba(255,255,255,.5) !important;
+		}
+
+		.banner {
+			display: inline-block;
+			position: relative;
+			width: 70%;
+			height: 10px;
+			border-radius: 5px;
+			background-color: pink;
+			margin: 10px 0;
+			vertical-align: middle;
+		}
+		.banner > span {
+			position: absolute;
+			display: block;
+			top: -2px;
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background-color: rgba(255,255,255,.6);
+			cursor: pointer;
+		}
+		.text {
+			vertical-align: middle;
+			color: rgba(0,0,0,.8);
+		}
+
+		.color-wrapper {
+			width: 200px;
+			height: 200px;
+			border: 1px solid rgba(0,0,0,.4);
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<aside>
+		<!-- 画笔svg -->
+		<div class="pen-show-wrapper">
+			<canvas id="penShow"></canvas>
+		</div>
+		<div class="pen-style">
+			<span id="pen" class="hover">画笔</span>
+			<span id="eraser" class="hover">橡皮擦</span>
+			<span id="back" class="hover">上一步</span>
+		</div>
+		<div>
+			<span class="text">大小：</span><div class="banner" id="size">
+				<span></span>
+			</div>
+		</div>
+		<div>
+			<span class="text">透明：</span><div class="banner" id="opacity">
+				<span></span>
+			</div>
+		</div>
+		<div class="color-wrapper"><canvas id="color"></canvas>
+		<div class="setting">
+			<span id="bigger"></span>
+			<span id="smaller"></span>
+			<span id="move"></span>
+		</div>
+	</aside>
+	<div class="canvas-wrapper"><canvas></canvas></div>
+</body>
+</html>
+<script>
+	// 画板初始化
+	var canvas = $('canvas')[2];
+	canvas.height = canvas.parentNode.offsetHeight-20;
+	canvas.width = canvas.parentNode.offsetWidth-20;
+	var left = canvas.getBoundingClientRect().left,
+			top = canvas.getBoundingClientRect().top;
+
+	var ctx = canvas.getContext("2d");
+
+  var obj = {
+  	color: '#000000',
+  	opacity: '1',
+  	size: '10',
+  	eraser: false,   // 默认不是橡皮擦
+  	mousedown: false  // 默认没有按下
+  }
+
+
+  // 画笔初始化
+  var canvas0 = $('#penShow');
+	canvas0.height = canvas0.parentNode.offsetHeight-2;
+	canvas0.width = canvas0.parentNode.offsetWidth-2;
+	var ctx0 = canvas0.getContext("2d");
+	// 初始化展示画笔
+	renderpen();
+
+
+	//  绘制颜色板
+	var color = $('canvas')[1];
+	color.height = color.parentNode.offsetHeight-20;
+	color.width = color.parentNode.offsetWidth-20;
+	var ctx_color = color.getContext("2d");
+	// 颜色圈
+	colorRing(ctx_color, 100, 100, 80, 56, 1);
+	// 2d渐变
+	colorPalatte(ctx_color, 75, 75, 50, 50, obj.color);
+	function colorRing(ctx, x, y, outterRadius, innerRadius, wearProof){  
+    for (var i = outterRadius; i >= innerRadius; i-=wearProof) {  
+        var r=255,g=0,b=0,flag=1;    // rgb 对应红绿蓝三色的数值， flag 指色彩渐变过程序号  
+        for (var j = 0; j < Math.PI*2; j+=Math.PI/720) {  
+            ctx.strokeStyle = 'rgb('+r+','+g+','+b+')';  
+            ctx.beginPath();  
+            ctx.arc(x,y,i,j,j+Math.PI/720,false);  
+            ctx.stroke();  
+            // 变化规则  
+            switch(flag){  
+                case 1:  
+                    if(g>=255){g=255;r=254;flag=2;break;}  
+                    g++;break;  
+                case 2:  
+                    if(r<=0){r=0;b=1;flag=3;break;}  
+                    r--;break;  
+                case 3:  
+                    if(b>=255){b=255;g=254;flag=4;break;}  
+                    b++;break;  
+                case 4:  
+                    if(g<=0){g=0;r=1;flag=5;break;}  
+                    g--;break;  
+                case 5:  
+                    if(r>=255){r=255;b=254;flag=6;break;}  
+                    r++;break;  
+                case 6:  
+                    if(b<=0){flag=null;break;}  
+                    b--;break;  
+                default:break;  
+            }  
+        };  
+    };  
+    return false;  
+	}
+	function colorPalatte(ctx, x, y, w, h, baseColor){  
+    var r,g,b;  
+    var unitI = h/255;  
+    baseColor = colorStringToRGB(baseColor);
+    // 处理字符串类型的色彩，转化为 {R:#,G:#,B:#}
+    if(!baseColor)
+        return false;
+    for (var i = 0; i < h; i+=unitI) {
+        var lg6 = ctx.createLinearGradient(x,y,x+w,y);
+        r=g=b=Math.floor(255-i*255/h);    // 左侧边缘色彩
+        lg6.addColorStop(0,'rgb('+r+','+g+','+b+')');
+        r=baseColor.R-i*255/h;        // 右侧边缘色彩
+        g=baseColor.G-i*255/h;        // 因为i被等分了，
+        b=baseColor.B-i*255/h;        // 所以需要反转单位
+        r=r<0?0:r;g=g<0?0:g;b=b<0?0:b;    //保证不能小于0，因为是减法，所以也不可能大于 255
+        r=Math.floor(r);g=Math.floor(g);b=Math.floor(b);    //rgb函数只接受整数  
+        lg6.addColorStop(1,'rgb('+r+','+g+','+b+')');  
+        ctx.strokeStyle = lg6;  
+        ctx.beginPath();  
+        ctx.moveTo(x,y+i);  
+        ctx.lineTo(x+w,y+i);  
+        ctx.stroke();  
+    };  
+    return false;  
+	}
+
+	// 取色事件监听
+	$('#color').onmouseover = function(event) {
+		event = event || window.event;
+
+	}
+	$('#color').onclick = function(event) {
+		event = event || window.event;
+		var pixel = ctx.getImageData(event.layerX, event.layerY, 1, 1),
+		color = pixel.data;
+		obj.color = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+		console.log(pixel);
+		console.log(event.layerX);
+		console.log(color);
+		console.log(event.clientX);
+		renderpen();
+	}
+	$('#color').onmouseout = function(event) {
+		event = event || window.event;
+	}
+
+
+  canvas.onmousedown = function(event) {
+  	event = event || window.event;
+
+  	ctx.lineWidth = obj.size;
+		ctx.strokeStyle = obj.color;//toRGBA(obj.color, obj.opacity);
+
+		ctx.moveTo(event.layerX, event.layerY);
+
+		obj.mousedown = true;
+  }
+
+  canvas.onmousemove = function(event) {
+  	event = event || window.event;
+
+  	if (obj.mousedown) {
+  		ctx.lineTo(event.layerX, event.layerY);
+			ctx.stroke();
+  	}
+  	
+  }
+
+
+  canvas.onmouseup = function(event) {
+  	event = event || window.event;
+
+  	obj.mousedown = false;
+  }
+
+
+
+  // 画笔样式
+  $('#pen').onclick = function() {
+  	obj.eraser = false;
+  	$('#eraser').style.backgroundColor = '#ccc';
+  	this.style.backgroundColor = 'rgba(255,255,255,.5)';
+  }
+  $('#eraser').onclick = function() {
+  	obj.eraser = true;
+  	$('#pen').style.backgroundColor = '#ccc';
+  	this.style.backgroundColor = 'rgba(255,255,255,.5)';
+  }
+
+
+  // 取色
+/*  function clickColor(color) {
+  	obj.color = color;
+  	renderpen();
+  }
+	function mouseOverColor(color) {
+		renderpen(color);
+	}
+	$('#colorMap').onmouseleave = function() {
+		console.log('onmouseout');
+		renderpen();
+	}*/
+
+
+	// rgb() 转对象
+  function colorStringToRGB(baseColor, opacity) {
+  	// 16进制转rgba
+  	if( typeof baseColor === 'string' ){
+        // 形如 #FF0000 的色彩字符串  
+        baseColor = baseColor.replace('#','');
+        if(baseColor.length != 3 && baseColor.length != 6){
+            console.log('Error color string format');
+            return null;
+        }
+        if(baseColor.length == 3){
+            var tmpArr = baseColor.split('');
+            baseColor = '';
+            for (var i = 0; i < tmpArr.length; i++) {
+                baseColor += tmpArr[i]+tmpArr[i];
+            };
+        }
+        baseColor = {
+            R: parseInt(baseColor.slice(0,2), 16),
+            G: parseInt(baseColor.slice(2,4), 16),
+            B: parseInt(baseColor.slice(4,6), 16),
+            A: opacity || 1
+        }
+    }  
+    return baseColor;  
+  }
+
+  function renderpen(color) {
+  	if(color != undefined) {
+  		console.log(color + '  obj: ' + obj.color);
+  		ctx0.arc(50,50,obj.size,0,360*Math.PI/180);
+			ctx0.closePath();
+			ctx0.fillStyle = color;
+			ctx0.fill();
+			return;
+  	}else {
+  		console.log('重绘');
+			ctx0.arc(50,50,obj.size,0,360*Math.PI/180);
+			ctx0.closePath();
+			ctx0.fillStyle = obj.color;
+			ctx0.fill();
+			//setCursor();
+		}
+  }
+
+  function setCursor() {
+  	var  img = canvas0.toDataURL();
+  	$('.canvas-wrapper').style.cursor = 'url('+ img +')';
+  }
+
+  function $(name) {
+  	var flag = name.charAt(0);
+  	if(flag === '.') {
+  		name = name.substring(1);
+  		return document.getElementsByClassName(name);
+  	}else if(flag === '#') {
+  		name = name.substring(1);
+  		return document.getElementById(name);
+  	}else {
+  		return document.getElementsByTagName(name);
+  	}
+  }
+
+	// 全局颜色
+	// 全局透明度
+	// 画笔大小
+	// 画笔/橡皮擦
+	// 撤销
+
+	// 打开？？？
+	// 保存  存为本地图片
+	// 取色板？？？
+	// 抓取移动
+	
+	// 画面放大  缩小  ？？？
+
+</script>

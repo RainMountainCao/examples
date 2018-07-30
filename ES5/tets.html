@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+	<title>Document</title>
+</head>
+<body>
+	<!-- <script src="./作用域.js"></script> -->
+	<span></span>
+	<span></span>
+	<span></span><span></span>
+</body>
+</html>
+
+<script src="./统计标签种类和个数.js"></script>
+
+<script>
+	/*
+	Number.prototype.plus = function(value) {
+    return this.valueOf + value;
+}
+Number.prototype.minus = function(value) {
+    return this.valueOf - value;
+}
+var a = (5).plus(3).minus(6); //2
+console.log(a);
+*/
+/*
+var i, myarray = [1,2,3,4,5,6,7,8,9,10];
+for (i = myarray.length;i--;) {    // 先判断再--
+   // 使用myarray[i]做点什么
+   console.log(i);
+}
+//第二种使用while循环：
+var myarray = [],
+    i = myarray.length;
+while (i--) {
+   // 使用myarray[i]做点什么
+}
+
+
+var month = "06",    
+year = "09";
+console.log(parseInt(month));
+console.log(parseInt(year));
+console.log(parseInt('08', 10));
+console.log(parseInt(year, 10));*/
+
+/*
+b = 20;
+console.log(this.b);*/
+
+/*
+var foo = {  
+	bar: function () {    
+		console.log(this == window);  
+	}
+}; 
+foo.bar();// foo
+(foo.bar)(); // foo
+(foo.bar = foo.bar)(); // window
+(false || foo.bar)(); // window
+(foo.bar, foo.bar)(); // window
+
+
+(function foo(bar) {   
+	console.log(this == window);   
+	!bar && foo(1); // "should" be special object, but always (correct) global 
+})(); // global
+*/
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>水平垂直居中</title>
+	<style>
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+		section {
+			height: 260px;
+		}
+		header {
+			height: 40px;
+			background-color: #ccc;
+			line-height: 40px;
+			text-align: center;
+			font-size: 34px;
+		}
+		section:nth-of-type(1) > div > .box {
+			border: 2px solid #beceeb;
+			width: 200px;
+			height: 160px;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		section:nth-of-type(2) > div > .box {
+
+		}
+		.zxx_align_box_3 li{
+			width:1em;
+			height:1em;
+			padding:0.1em;
+			margin:0 0.1em 0 0;
+			font-size:128px;
+			float:left;
+			border:1px solid #beceeb;
+		} 
+			
+		.zxx_align_box_3 li img{
+				display:block;
+				width:100%;
+				height:100%;
+				background-repeat:no-repeat;
+				background-position:center;
+		}
+
+		section:nth-of-type(3) .img-wrapper {
+			width: 114px;
+			height: 114px;
+
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+
+			font-size: 118px;
+			border: 1px solid #beceed;
+		}
+		section:nth-of-type(3) .img-wrapper img {
+			vertical-align: middle;
+			width: 100px;
+			height: 100px;
+		}
+		section:nth-of-type(3) ul li {
+			float: left;
+			margin-right: 13px;
+		}
+		section:nth-of-type(4) div {
+			margin: 10px;
+		}
+		section:nth-of-type(4) a {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			width: 170px;
+			border: 1px solid #ccc;
+		}
+		section:nth-of-type(4) a:nth-of-type(1) img {
+			width: 100px;
+			height: 100px;
+		}
+		section:nth-of-type(4) a:nth-of-type(2) img {
+			width: 100px;
+			height: 160px;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<header>多行文字垂直居中</header>
+		<div>
+			<div class="box">
+				<span>hfilllllbdjkflsa片，发帖你还不如GV而发愁大片，发帖你还不如GV而发愁大学生</span>
+			</div>
+		</div>
+	</section>
+	<section>
+		<header>透明gif + 背景定位（微软必应）</header>
+		<div>
+			<ul class="zxx_align_box_3 fix"> 
+				<li> 
+					<img src="images/22_.jpg" style="background-image:url(http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg);" /> 
+				</li>
+				<li> 
+					<img src="images/2_.jpg" style="background-image:url(http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg);" /> 
+				</li> 
+			</ul>
+		</div>
+	</section>
+	<section>
+		<header> display:table-cell和文字大小控制居中</header>
+		<div>
+			<ul>
+				<li><div class="img-wrapper"><img src="images/2_.jpg" /></div></li>
+				<li><div class="img-wrapper"><img src="images/19_.jpg" /></div></li>
+			</ul>
+		</div>
+	</section>
+	<section>
+		<header>display:inline-block和文字大小控制居中</header>
+		<div>
+			<a href="#">
+				<img src="images/17_.jpg" />
+			</a>
+			<a href="#">
+				<img src="images/18_.jpg" />
+			</a>
+		</div>
+	</section>
+	<section>
+		<header></header>
+		<div></div>
+	</section>
+</body>
+</html>

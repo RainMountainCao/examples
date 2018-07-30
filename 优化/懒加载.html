@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>懒加载</title>
+	<style>
+	body {
+		padding: 0;
+		margin: 0;
+		font-size: 0;
+	}
+		img {
+			height: 400px;
+			width: 260px;
+		}
+		ul {
+			margin: 0 auto;
+			list-style: none;
+			width: 262px;
+		}
+		li {
+			border: 1px solid #000;
+			overflow: hidden;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="in"><img data-hahaha="images/1.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/2.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/3.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/4.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/5.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/6.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/9.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/1.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/2.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/3.jpg" alt="" /></li>
+		<li class="in"><img data-hahaha="images/4.jpg" alt="" /></li>
+	</ul>
+</body>
+<script>
+/*var oBtn = document.getElementsByTagName('button')[0];
+var aImages = document.images;
+loadImg(aImages);
+window.onscroll = function(){
+		// 每次滚动触发遍历所有图片
+    loadImg(aImages);
+};
+function loadImg(arr){
+    for( var i = 0,len = arr.length; i < len; i++){
+    	// 遍历图片  判断图片距离可视区的距离
+    	// 距离小于可视区高  并且  图片还没加载
+        if(arr[i].getBoundingClientRect().top < document.documentElement.clientHeight && !arr[i].isLoad){
+            arr[i].isLoad = true;    // 设置加载标记
+            // 设置样式
+            arr[i].style.cssText = "transition: ''; opacity: 0;"
+            // 加载图片
+            if(arr[i].dataset){
+                aftLoadImg(arr[i],arr[i].dataset.hahaha);
+            }else{
+                aftLoadImg(arr[i],arr[i].getAttribute("data-hahaha"));
+            }
+            // 立即执行函数  延迟16ms后显示图片
+            (function(i){
+                setTimeout(function(){
+                    arr[i].style.cssText = "transition: 1s; opacity: 1;"
+                },16)  // chrome最小的可识别定时器的时间间隔
+            })(i);
+        }
+    }
+}
+function aftLoadImg(obj,url){
+	// 该方法避免了大图片加载过程中一段一段显示的情况
+    var oImg = new Image();
+    oImg.onload = function(){
+        obj.src = oImg.src;     // 将一个图片的src赋给加载图片的src
+    }
+    oImg.src = url;
+}*/
+
+var images = document.images;
+imagesLoad(images);
+window.onscroll = function() {
+	imagesLoad(images);
+}
+
+function imagesLoad(arr) {
+	for(var i=0; i<arr.length; i++) {
+		if(arr[i].getBoundingClientRect().top < document.documentElement.clientHeight && !arr[i].isLoad) {
+			arr[i].isLoad = true;
+			arr[i].style.cssText = "opacity: 0";
+			if(arr[i].dataset) {
+				loadImg(arr[i], arr[i].dataset.hahaha);
+			}else {
+				loadImg(arr[i], arr[i].getAttribute('data-hahaha'));
+			}
+			(function(i) {
+				setTimeout(function(){
+					arr[i].style.cssText = "transition: 1s; opacity: 1";
+				}, 16)
+			})(i);
+		}
+	}
+}
+
+function loadImg(img, url) {
+	var image = new Image();
+	image.onload = function() {
+		img.src = image.src;
+	}
+	image.src = url;
+}
+
+</script>
+</html>

@@ -1,0 +1,33 @@
+<html>
+	<body>
+		<form>
+			<input type="text" id="message">
+			<input id="btn" type="submit"></input>	
+		</form>
+	</body>
+</html>
+<script>
+	var form = document.forms[0],
+			port;
+
+	window.addEventListener('DOMContentLoaded', function(e) {
+		window.addEventListener('message', function(event) {
+			// 接收到 主窗体传入的端口  记录port0
+			port = event.ports[0];
+			console.log('主窗口发来的：', port);
+		}, false);
+
+		// 该窗体加载完成后  提醒主窗体  将端口发过来
+		//window.parent.postMessage('发送页加载完毕', '*');
+	});
+
+	form.onsubmit = function() {
+		var message = document.getElementById('message').value;
+		if(port === undefined) {
+			alert('无可用端口');
+		} else {
+			port.postMessage(message);
+		}
+		return false;
+	}
+</script>

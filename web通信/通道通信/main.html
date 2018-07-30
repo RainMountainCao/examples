@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>通道通信</title>
+</head>
+<body>
+	<iframe src="frame0.html" frameborder="0"></iframe>
+	<iframe src="frame1.html" frameborder="0"></iframe>
+</body>
+</html>
+<script>
+	window.addEventListener('message', function(event) {
+		// 主窗体向子窗体发端口
+		if(event.data == '显示页面加载完毕') {
+			console.log('创建端口页面发来端口： ' + event.ports);
+			console.log(event.ports);
+		} else {
+			console.log('请求端口页面请求端口： ' + event.data);
+		}
+		window.frames[1].postMessage('端口打开', '*', event.ports)
+	});
+</script>

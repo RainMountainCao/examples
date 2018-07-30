@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>DOM2DOM3</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script type="text/javascript">
+		//alert("sss");
+		/*alert(document.implementation.hasFeature("Core", "2.0"));
+		alert(document.implementation.hasFeature("Core", "3.0"));   //IE不支持
+		alert(document.implementation.hasFeature("HTML", "2.0"));
+		alert(document.implementation.hasFeature("Views", "2.0"));
+		alert(document.implementation.hasFeature("XML", "2.0"));
+		alert(document.implementation.hasFeature("CSS", "2.0"));  //IE不支持
+		alert(document.implementation.hasFeature("CSS2", "2.0"));*/
+window.onload = function(){
+		var mydiv = document.getElementById("mydiv");
+		//mydiv.style.backgroundColor = "red";
+		//mydiv.style.border = "5px solid black";
+
+
+
+		//DOM2样式属性和方法
+		mydiv.style.cssText = "opacity: 0.5; border:5px solid black; background-color: red;";
+/*		console.log(mydiv.style.length);
+		for (var i = mydiv.style.length - 1; i >= 0; i--) {
+			console.log(mydiv.style.item(i));
+		}*/
+
+		var prop, value, i, len;
+/*		for (i = 0, len = mydiv.style.length; i < len; i++) {
+			prop = mydiv.style[i];
+			value = mydiv.style.getPropertyValue(prop);
+			console.log(prop + " : " + value);
+		}
+*/
+//????????不支持getPropertyCSSValue
+/*		for (i = 0, len = mydiv.style.length; i < len; i++) {
+			prop = mydiv.style[i];
+			value = mydiv.style.getPropertyCSSValue(prop);
+			alert(prop + ":" + value.cssText + "(" + value.cssValueType + ")");
+		}*/
+
+		//mydiv.style.removeProperty("background-color");
+		//mydiv.style.setProperty("background-color", "pink");
+
+		//ie9+ 和其他
+/*		var computedStyle = document.defaultView.getComputedStyle(mydiv, null);
+		alert(computedStyle.backgroundColor);   //rgb
+		alert(computedStyle.width);
+		alert(computedStyle.height);   //border等综合属性不会返回值 chrome可以返回*/
+
+		//ie所有可实现的方法
+		/*var computedStyle = mydiv.currentStyle;
+		alert(computedStyle.backgroundColor);   //red
+		alert(computedStyle.width);
+		alert(computedStyle.height); 
+		alert(computedStyle.border);*/
+
+		//跨浏览器
+		//1
+		//var computedStyle = (mydiv.currentStyle) ? mydiv.currentStyle : document.defaultView.getComputedStyle(mydiv, null);
+		//2
+		//var computedStyle = mydiv.currentStyle || document.defaultView.getComputedStyle(mydiv, null);
+		//3
+/*		var computedStyle;
+		if(mydiv.currentStyle){
+			computedStyle = mydiv.currentStyle;
+		}else{
+			computedStyle = document.defaultView.getComputedStyle(mydiv, null);
+		}
+
+		alert(computedStyle.backgroundColor);   //red
+		alert(computedStyle.width);
+		alert(computedStyle.height); 
+		alert(computedStyle.border);*/
+
+	
+	//接口样式表  stylesheet 只读接口
+/*	var sheet = null;
+	for (var i=0, len = document.styleSheets.length; i < len; i++) {
+		sheet = document.styleSheets[i];
+		alert(sheet.href);
+	}*/
+
+
+	//link.stylesheet / .sheet
+	function getStyleSheet(element) {
+		return element.sheet || element.styleSheet;
+	}
+
+	var link = document.getElementsByTagName("link")[0];
+	var sheet = getStyleSheet(link);
+	console.log(sheet.href);
+	console.log(document.styleSheets[0].href);
+
+	//css规则
+	var rules = sheet.rules;
+	var rule = rules.item(0);     //chrom不识别???
+	console.log(rule.selectorText);     //.mydiv
+	console.log(rule.parentRule);   //？？
+	console.log(rule.parentStyleSheet.href);   //当前所属的样式表
+	console.log(rule.type);   //1
+
+	
+
+	console.log(rule.cssText);		
+	//.mydiv { width: 500px; height: 500px; background-color: rgb(204, 204, 204); overflow: hidden; }	 
+	console.log(rule.style.cssText);			 
+	//width: 500px; height: 500px; background-color: rgb(204, 204, 204); overflow: hidden;
+	console.log(rule.style.backgroundColor);
+
+	//创建规则  跨浏览器
+	//sheet.insertRule("body { background-color: black; }", 0);
+	//sheet.addRule("body", "background-color: black", 0);
+/*	function insertRule(sheet, selectorText, cssText, position) {
+		if (sheet.insertRule) {
+			sheet.insertRule( selectorText + "{" + cssText + "}", position);
+		}else if (sheet.addRule) {
+			sheet.addRule(selectorText, cssText, position);
+		}
+	}
+
+	insertRule(sheet, "body", "background-color: pink", 0);*/
+	//2遍
+	function insertRule(sheet, selectorText, cssText, position){
+		if (sheet.insertRule) {
+			sheet.insertRule(selectorText + "{" + cssText + "}", position);
+		}else if (sheet.addRule) {
+			sheet.addRule(selectorText, cssText, position);
+		}
+	}
+
+	//insertRule(sheet, "body", "background-color:yellow", 0);
+
+	//sheet.deleteRule(0);    //dom
+	//sheet.removeRule(0);    //ie
+
+/*	function deleteRule(sheet, index){
+		if (sheet.deleteRule) {
+			sheet.deleteRule(index);
+		}else if (sheet.removeRule) {
+			sheet.removeRule(index);
+		}
+	}
+
+	deleteRule(sheet, 0);*/
+
+
+	//遍历  <=ie8不支持
+/*	alert(document.implementation.hasFeature("Traversal",2.0));
+	alert(typeof document.createNodeIterator == "function");
+	alert(typeof document.createTreeWalker == "function");*/
+
+	//只显示P节点的迭代器
+/*	var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCase() == "div" ?
+				NodeFilter.FILTER_ACCEPT : 
+				NodeFilter.FILTER_SKIP;
+		}
+	}
+	var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, null, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = iterator.nextNode();
+	}*/
+	//2
+/*	var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCase() == "p" ?  
+				NodeFilter.FILTER_ACCEPT : 
+				NodeFilter.Filter_skip;
+		}
+	}
+
+	var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, null, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = iterator.nextNode();
+
+	}*/
+	//3
+	/*var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCase() == "p" ?
+				NodeFilter.FILTER_ACCEPT :
+				NodeFilter.FILTER_SKIP;
+		}
+	}
+	var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, filter, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = iterator.nextNode();
+	}*/
+	//4
+/*	var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCase() == "div" ? 
+				NodeFilter.FILTER_ACCEPT :
+				NodeFilter.FILTER_SKIP;
+		}
+	}
+
+	var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, filter, false);
+	var node = iterator.nextNode();
+	while(node !== null) {
+		alert(node.tagName.toLowerCase());
+		node = iterator.nextNode();
+	}*/
+	//5
+/*	var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCase() == "p" ? 
+				NodeFilter.FILTER_ACCEPT :
+				NodeFilter.FILTER_SKIP;
+		}
+	}
+	var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, filter, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName.toLowerCase());
+		node = iterator.nextNode();
+	}*/
+
+	//6
+/*	var filter = {
+		acceptNode: function(node){
+			return node.tagName.toLowerCae() == "p" ?
+				NodeFilter.FILTER_ACCEPT : 
+				NodeFilter.FILTER_SKIP;
+		}
+	}
+
+	var iterator = document.createNodeIterator(mydiv, NodeFilter.SHOW_ELEMENT,
+											filter, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = node.nextNode();
+	}
+*/
+
+
+
+
+
+	var filter = function(node){
+		return node.tagName.toLowerCase() == 'p' ?
+				NodeFilter.FILTER_ACCEPT:
+				NodeFilter.FILTER_SKIP;
+	}
+
+	//var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT, filter, false);
+
+/*	var iterator = document.createNodeIterator(document, NodeFilter.SHOE_ALL, null, false);
+	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = iterator.nextNode();
+	}*/
+
+/*	var node = iterator.nextNode();
+	while(node !== null){
+		alert(node.tagName.toLowerCase());
+		node = iterator.nextNode();
+	}*/
+
+
+
+	//TreeWalker   filter和iterator一样
+	var walker = document.createTreeWalker(mydiv, NodeFilter.SHOW_ELEMENT,
+											null, false);
+/*	var node = walker.nextNode();
+	alert(node.className);
+	alert(walker.firstChild().innerHTML);
+	alert(walker.nextSibling().innerHTML);
+	while(node !== null){
+		alert(node.tagName);
+		node = walker.nextSibling();
+	}
+*/
+	//直接定位
+	//alert(node == walker.currentNode);
+
+	/*walker.currentNode = document.body;
+	var node = walker.nextNode();
+	while(node !== null){
+		alert(node.tagName);
+		node = walker.nextNode();
+	}*/
+
+
+
+
+	//范围
+/*	alert(document.implementation.hasFeature("Range", 2.0));
+	alert(typeof document.createRange == "function");*/
+
+	var range1 = document.createRange(),
+		range2 = document.createRange(),
+		div1 = document.getElementById("div1");
+/*	range1.selectNode(div1);
+	range2.selectNodeContents(div1);
+
+	var p1 = document.getElementById("p1");
+	var p2 = document.getElementById("p2");
+
+	alert(range1.startContainer == mydiv);
+	alert(range1.endContainer == mydiv);
+	alert(range1.commonAncestorContainer == mydiv);
+    
+    //从0开始算
+	alert(range1.startOffset);  //1
+	alert(range1.endOffset);    //2
+	alert(range2.startOffset);    //0  包括了回车
+	alert(range2.endOffset);    //7
+*/
+/*
+	alert(range2.startContainer == div1);
+	alert(range2.endContainer == div1);
+	alert(range2.commonAncestorContainer == div1);
+
+
+	range2.setStartBefore(p2);   //3  在谁前面就是谁，在谁后面谁加一
+	range2.setStartAfter(p2);	//4
+	range2.setEndAfter(p2);	//4
+	range2.setEndBefore(p2);	//4
+
+	alert(range2.startOffset);   //0    包括了回车
+	alert(range2.endOffset);     //7
+*/
+
+
+	//DOM范围实现复杂选择
+	var p1 = document.getElementById("p1"),
+		p2 = document.getElementById("p2"),
+		p1Index = -1,
+		i, len;
+	for (var i = 0, len = p1.parentNode.childNodes.length; i < len; i++) {
+		if (p1.parentNode.childNodes[i] == p1) {
+			p1Index = i;
+			break;
+		}
+	}
+	//range1.selectNode(p1);
+	//range2.selectNodeContents(p1);
+
+/*	range1.setStart(p1.parentNode, p1Index);
+	range1.setEnd(p1.parentNode, p1Index+1);
+
+	range2.setStart(p1.childNodes[0], 0);
+	range2.setEnd(p1, p1.childNodes.length);
+
+	var helloNode = p1.firstChild.firstChild,
+		worldNode = p1.lastChild;
+	var range = document.createRange();
+	range.setStart(helloNode, 2);
+	range.setEnd(worldNode, 3);
+*/
+	//删除并得到实节点
+	//var fragment = range.extractContents();
+
+	//直接删除
+	//range.deleteContents();
+
+	//得到克隆副本 
+
+/*	var fragment = range.cloneContents();
+	p1.parentNode.appendChild(fragment);
+
+*/
+	/*var span = document.createElement("span");
+	span.style.color = "red";
+	span.appendChild(document.createTextNode("Insert Text"));
+	range.insertNode(span);*/
+
+	//选中加背景
+/*	var range = document.createRange();
+	range.selectNodeContents(p1);
+
+	var span = document.createElement("span");
+	span.style.backgroundColor = "pink";
+	range.surroundContents(span);*/
+
+	//折叠
+	//range.collapse(true);
+	//alert(range.collapsed);
+
+	//比较DOM范围
+
+	//文档中分离
+	//range.detach();
+	//range = null;
+
+	//ie8及更早版本中的范围  ie8不支持DOM
+	//var range = document.body.createTextRange();
+	//var found = range.findText("hello");
+	//var foundAgain = range.findText("hello", 1);
+	//alert(found);
+
+	//range.moveToElementText(p1);
+	//alert(range.text);
+	//alert(range.htmlText);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</script>
+</head><body><div id="mydiv" class="mydiv">
+		<div id="div1" class="div1 box">
+			<P id="p1"><b>hello</b>world,hello</P>
+			<P id="p2">BBBB</P>
+			<P>CCCC</P>
+			111
+		</div>
+		<div id="div2" class="div2 box">222</div>
+		<div id="div3" class="div3 box">333</div>
+		<div id="div4" class="div4 box">444</div>
+	</div>
+	<p>pppp</p>
+	<p>qqqq</p>
+	<p>rrrr</p>
+</body>
+</html>

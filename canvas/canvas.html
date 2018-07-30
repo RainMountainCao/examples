@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas小例子</title>
+	<script src="konva.js"></script>
+	<style>
+		#canvas1 {
+			/* width: 600px;
+			height: 600px; */
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas1" width="300" height="300">
+		ie9以上支持canvas
+		您的浏览器不支持canvas,请升级浏览器
+	</canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<canvas width="300" height="300"></canvas>
+	<ca3nvas width="300" height="300"></canvas>
+	<div id="container">
+		
+	</div>
+	<script>
+		function CircleText(option) {
+			this._init(option);
+		}
+		CircleText.prototype = {
+			_init: function(option) {
+				this.x = option.x || 0;
+				this.y = option.y || 0;
+				this.innerRadius = option.innerRadius || 0;
+				this.outerRadius = option.outerRadius || 0;
+				this.text = option.text || "";
+				this.innerStyle = option.innerStyle || "red";
+				this.outerStyle = option.outerStyle || "blue";
+
+				this.group = new Konva.Group({
+					x: this.x,
+					y: this.y
+				});
+				//innerCircle
+				var innerCircle = new Konva.Circle({
+					x: 0,
+					y: 0,
+					radius: this.innerRadius,
+					fill: this.innerStyle,
+					opacity: .8
+				});
+				this.group.add(innerCircle);
+
+				//ringCircle
+				var ringCircle = new Konva.Ring({
+					x: 0,
+					y: 0,
+					innerRadius: this.innerRadius,
+					outerRadius: this.outerRadius,
+					fill: this.outerStyle,
+					opacity: .4
+				});
+				this.group.add(ringCircle);
+
+				//innerText
+				var innerText = new Konva.Text({
+					x: 0 - this.outerRadius,
+					y: -7,
+					fontSize: 16,
+					width: this.outerRadius * 2,
+					align: 'center',
+					text: this.text,
+					fill: '#fff'
+				});
+				this.group.add(innerText);
+			},
+			addToGroupOrLayer: function(arg) {
+				arg.add(this.group);
+			}
+		};
+
+
+
+
+		var stage = new Konva.Stage({
+			container: 'container',
+			width: window.innerWidth,
+			height: window.innerHeight
+		});
+		
+		var cenX = stage.width() / 2;
+		var cenY = stage.height() / 2;
+
+		//创建背景层
+		var layer = new Konva.Layer();
+		stage.add(layer);
+
+		//绘制背景
+		var innerRadius = 252 / 2;
+		var outerRadius = 220;
+		var innerCircle = new Konva.Circle({
+			x: cenX,
+			y: cenY,
+			radius: innerRadius,
+			stroke: '#ccc',
+			strokeWidth: 4,
+			dash: [10, 4]
+		});
+		var outerCircle = new Konva.Circle({
+			x: cenX,
+			y: cenY,
+			radius: outerRadius,
+			stroke: '#ccc',
+			strokeWidth: 4,
+			dash: [10, 4]
+		});
+
+		layer.add(innerCircle);
+		layer.add(outerCircle);
+
+		var centerCircle = new CircleText({
+			x: cenX,
+			y: cenY,
+			innerRadius: 132 / 2,
+			outerRadius: 180 / 2,
+			text: 'web全栈',
+			innerStyle: '#525A82',
+			outerStyle: '#E1E1E1'
+		});
+		centerCircle.addToGroupOrLayer(layer);
+		layer.draw();
+
+		/*var centerCircle = new Konva.Circle({
+			x: cenX,
+			y: cenY,
+			radius: 132 / 2,
+			fill: '#525A82'
+		});
+		var centerRing = new Konva.Ring({
+			x: cenX,
+			y: cenY,
+			innerRadius: 132 / 2,
+			outerRadius: 180 / 2,
+			fill: '#E1E1E1',
+			opacity: .5
+		});
+		var centerText = new Konva.Text({
+			x: cenX - (180 / 2),
+			y: cenY - 8,
+			width: 180,
+			align: 'center',
+			text: 'web全栈',
+			fontSize: 17,
+			fontStyle: 'bold',
+			fontFamily: '微软雅黑',
+			fill: '#fff'
+		});
+		layer.add(centerCircle);
+		layer.add(centerRing);
+		layer.add(centerText);
+*/
+
+		var animateLayer = new Konva.Layer();
+		var animateLayer2 = new Konva.Layer();
+		
+		var group1 = new Konva.Group({
+			x: cenX,
+			y: cenY
+		});
+		var group2 = new Konva.Group({
+			x: cenX,
+			y: cenY
+		});
+
+		var htmlCircle1 = new CircleText({
+			x: innerRadius * Math.cos(-30 * Math.PI / 180),
+			y: innerRadius * Math.sin(-30 * Math.PI / 180),
+			innerRadius: 30,
+			outerRadius: 40,
+			text: 'html',
+			innerStyle: 'pink',
+			outerStyle: '#E1E1E1',
+		});
+		htmlCircle1.addToGroupOrLayer(group1);
+
+		var htmlCircle2 = new CircleText({
+			x: innerRadius * Math.cos(180 * Math.PI / 180),
+			y: innerRadius * Math.sin(180 * Math.PI / 180),
+			innerRadius: 30,
+			outerRadius: 40,
+			text: 'html',
+			innerStyle: 'green',
+			outerStyle: '#E1E1E1',
+		});
+		htmlCircle2.addToGroupOrLayer(group1);
+
+
+		var cssCircle = new CircleText({
+			x: outerRadius * Math.cos(-30 * Math.PI / 180),
+			y: outerRadius * Math.sin(-30 * Math.PI / 180),
+			innerRadius: 50,
+			outerRadius: 60,
+			text: 'CSS',
+			innerStyle: 'skyblue',
+			outerStyle: '#E1E1E1'
+		});
+		cssCircle.addToGroupOrLayer(group2);
+		//cssCircle.addToGroupOrLayer(animateLayer2);
+		//group2.add(cssCircle);	
+		
+		layer.add(group1);
+		layer.add(group2);
+
+		layer.draw();
+//	animateLayer2.draw();
+
+		//帧动画
+		var rotateAnglePerSecond = 60;
+		var animate = new Konva.Animation(function(frame) {
+			var rotateAngle = rotateAnglePerSecond * frame.timeDiff / 1000;
+			group1.rotate(rotateAngle);
+			group1.getChildren().each(function(item, index) {
+				item.rotate(-rotateAngle);
+			});
+			group2.rotate(-rotateAngle);
+			group2.getChildren().each(function(item, index) {
+				item.rotate(rotateAngle);
+			});
+		}, layer);
+		layer.on("mouseover", function(){
+			rotateAnglePerSecond = 10;		
+		});
+		layer.on("mouseout", function(){
+			rotateAnglePerSecond = 60;		
+		});
+		animate.start();
+
+
+		/*//创建舞台
+		var stage = new Konva.Stage({
+			container: 'container',
+			width: window.innerWidth,
+			height: window.innerHeight
+		});
+		//创建一个层
+		var layer = new Konva.Layer();
+		//把层添加到舞台上去
+		stage.add(layer);
+		//创建一个矩形
+		var rect = new Konva.Rect({
+			x: 100,
+			y: 100,
+			opacity: .4,
+			width: 600,
+			height: 40,
+			draggable: true,
+			fill: "orange",
+			cornerRadius: 20
+		});
+		//把矩形添加到层上去
+		layer.add(rect);
+		//把层渲染到舞台上
+		layer.draw();
+*/
+	</script>
+	<img src="./2_.jpg" alt="">
+	<img src="" id="imgId" alt="">
+	<script>
+		var canvas = document.getElementsByTagName("canvas");
+
+		var canvas1 = canvas[0];
+
+		canvas1.style.border = "1px solid red";
+
+		var ctx1 = canvas1.getContext("2d");
+
+		ctx1.moveTo(100,100);
+		ctx1.lineTo(200,100);
+		ctx1.lineTo(100,200);
+		//ctx1.lineTo(100,100);
+
+		ctx1.closePath();
+
+		ctx1.lineWidth = 10;
+		ctx1.strokeStyle = "red";
+		ctx1.stroke();
+
+		ctx1.fillStyle = "yellow";
+		ctx1.fill();
+
+
+
+
+		var canvas2 = canvas[1];
+		canvas2.style.border = "1px solid blue";
+		var ctx2 = canvas2.getContext("2d");
+		ctx2.beginPath();
+		ctx2.rect(100,100,100,100);
+		ctx2.stroke();
+		ctx2.fillStyle = "black";
+		ctx2.fill();
+
+		var canvas3 = canvas[2];
+		canvas3.style.border = "1px solid orange";
+		var ctx3 = canvas3.getContext("2d");
+		ctx3.beginPath();
+		ctx3.strokeRect(100,100,100,100);
+		ctx2.fillStyle = "pink";
+		ctx2.fill();
+
+
+		var canvas4 = canvas[3];
+		canvas4.style.border = "1px solid green";
+		var ctx4 = canvas4.getContext("2d");
+		ctx4.moveTo(50,50);
+		ctx4.lineTo(250,50);
+		ctx4.lineWidth = 10;
+		ctx4.strokeStyle = "green";
+		ctx4.stroke();
+		ctx4.beginPath();
+		ctx4.moveTo(50,150);
+		ctx4.lineTo(250,150);
+		ctx4.strokeStyle = "red";
+		ctx4.stroke();
+
+		var canvas5 = canvas[4];
+		canvas5.style.border = "1px solid green";
+		var ctx5 = canvas5.getContext("2d");
+		//ctx5.strokeRect(50,50,200,200);
+		ctx5.moveTo(50,50);
+		ctx5.lineTo(250,50);
+		ctx5.lineTo(250,250);
+		ctx5.lineTo(50,250);
+		ctx5.closePath();
+		ctx5.fillStyle = "yellow";
+		ctx5.fill();
+		ctx5.clearRect(100,100,50,50);
+
+		var arr6 = [{
+			value: .2,
+			color: "red"
+		},{
+			value: .2,
+			color: "yellow"
+		},{
+			value: .1,
+			color: "blue"
+		},{
+			value: .1,
+			color: "green"
+		},{
+			value: .4,
+			color: "pink"
+		}];
+		var canvas6 = canvas[5];
+		canvas6.style.border = "1px solid green";
+		var ctx6 = canvas6.getContext("2d");
+		var beginAngle = -90;
+		for(var i=0; i<arr6.length; i++) {
+			ctx6.beginPath();
+			ctx6.moveTo(150,150);
+			ctx6.arc(150,150,100,beginAngle*Math.PI/180,(beginAngle + (360*arr6[i].value))*Math.PI/180);
+			ctx6.closePath();
+			ctx6.stroke();
+			ctx6.fillStyle = arr6[i].color;
+
+			var text = arr6[i].value*100 + "%";
+			var x, y, angle;
+			angle = (beginAngle + beginAngle + (360*arr6[i].value)) / 2;
+			x = Math.cos(	Math.PI * angle / 180 )*(100+20) + 150;
+			y = Math.sin( Math.PI * angle / 180 )*(100+20) + 150;
+
+			if (angle > 90 && angle < 270) {
+				ctx6.textAlign = "end";
+			}
+
+			ctx6.fillText(text, x, y);
+
+			ctx6.fill();
+			beginAngle+=360*arr6[i].value;
+		}
+
+
+		var canvas7 = canvas[6];
+		canvas7.style.border = "1px solid red";
+		var ctx7 = canvas7.getContext("2d");
+		ctx7.moveTo(150,150);
+		ctx7.arc(150,150,100,0*Math.PI/180,30*Math.PI/180,true);
+		ctx7.closePath();
+		ctx7.strokeStyle = "red";
+		ctx7.stroke();
+		ctx7.fillStyle = "yellow";
+		ctx7.fill();
+
+		var canvas8 = canvas[7];
+		canvas8.style.border = "1px solid red";
+		var ctx8 = canvas8.getContext("2d");
+		var img = new Image();
+		img.src = "./2_.jpg";
+		img.onload = function() {
+			var h = img.height,
+				  w = img.width;
+			for(var i=0; i<5; i++) {
+				ctx8.drawImage(img, i*20, i*20, 120, 120*h/w);
+			}
+		}
+
+
+				//./2_.jpg
+		var canvas9 = canvas[8];
+		canvas9.style.border = "1px solid red";
+		if(canvas9.getContext) {
+			var ctx9 = canvas9.getContext("2d");
+		/*var imgURL = canvas9.toDataURL("image/png");
+			var image = document.createElement("img");
+			image.src = imgURL;
+			document.body.appendChild(image);*/
+			var img9 = new Image();
+			img9.src = "./mm.png";
+			var w = canvas9.width,
+					h = canvas9.height,
+					x = 0;
+			img9.onload = function() {
+				setInterval(function(){
+					ctx9.clearRect(0, 0, w, h);
+					ctx9.drawImage(img9,  x, 0, 40, 65, 100, 100, 40, 65);
+					//console.log(x);
+					if (x == 120) {
+						x = 0;
+					}else {
+						x += 40;
+					}
+				}, 300);
+			}
+		}
+
+
+		var canvas10 = canvas[9];
+		canvas10.style.border = "1px solid red";
+		var ctx10 = canvas10.getContext("2d");
+		ctx10.arc(150,150,100,0,2*Math.PI,false);
+		ctx10.moveTo(260,150);
+		ctx10.arc(150,150,110,0,2*Math.PI,false);
+		ctx10.moveTo(150, 150);
+		ctx10.lineTo(150, 60);
+		ctx10.moveTo(150,150);
+		ctx10.lineTo(85, 150);
+		ctx10.font = "bold 14px Arial";
+		ctx10.textAlign = "center";
+		ctx10.textBaseline = "middle";
+		ctx10.fillText("12", 150, 60);
+		ctx10.textAlign = "end";
+		ctx10.fillText("12", 150, 80);
+		ctx10.textAlign = "start";
+		ctx10.fillText("12", 150, 100);
+		ctx10.textBaseline = "middle";
+		ctx10.fillText("12", 60, 150);
+		ctx10.textBaseline = "top";
+		ctx10.fillText("12", 80, 150);
+		ctx10.textBaseline = "bottom";
+		ctx10.fillText("12", 100, 150);
+		ctx10.textBaseline = "hanging";
+		ctx10.fillText("12", 120, 150);
+		ctx10.textBaseline = "alphabetic";
+		ctx10.fillText("12", 130, 150);
+		ctx10.textBaseline = "ideographic";  //和bottom差不多
+		ctx10.fillText("12", 120, 150);
+		ctx10.stroke();
+//	alert(ctx10.isPointInPath(150,15));
+
+
+		var canvas11 = canvas[10];
+		canvas11.style.border = "1px solid red";
+		var ctx11 = canvas11.getContext("2d");
+		var fontSize = 100;
+		ctx11.font = fontSize + "px Arial";
+		while(ctx11.measureText("hello world!").width > 140) {
+			fontSize--;
+			ctx11.font = fontSize + "px Arial";
+		}
+		ctx11.fillText("hello world!!!", 20, 50, 90);
+
+
+//面向对象绘制矩形
+function Canvas(data) {
+	this._init(data);
+}
+Canvas.prototype = {
+	_init: function(data) {
+		this.x = data.x || 0;
+		this.y = data.y || 0;
+		this.w = data.w || 0;
+		this.h = data.h || 0;
+		this.rotation = data.rotation || 0;
+		this.scaleX = data.scaleX || 1;
+		this.scaleY = data.scaleY || 1;
+		this.translateX = data.translateX || 0;
+		this.translateY = data.translateY || 0;
+		this.strokeStyle = data.strokeStyle || "red";
+		this.fillStyle = data.fillStyle || "yellow";
+		this.opacity = data.opacity == 0 ? 0 : data.opacity || 1;
+	},
+	render: function(ctx) {
+		ctx.strokeStyle = this.strokeStyle;
+		ctx.fillStyle = this.fillStyle;
+//		ctx.save();
+		ctx.translate(this.translateX, this.translateY);
+		ctx.fillRect(this.x, this.y, this.w, this.h);
+		ctx.strokeRect(this.x, this.y, this.w, this.h);
+/*		ctx.strokeStyle = "blue";
+		ctx.translate(30, 30);
+		ctx.rotate	(30*Math.PI / 180);
+		ctx.strokeRect(30, 30, 50, 50);
+		
+		ctx.restore();
+		ctx.fillRect(20, 20, 30, 30);*/
+	}
+}
+var c = new Canvas({
+	x: 100,
+	y: 100,
+	w: 100,
+	h: 100
+});
+var canvas12 = canvas[11];
+canvas12.style.border = "1px solid red";
+var ctx12 = canvas12.getContext("2d");
+c.render(ctx12);
+
+
+
+
+var canvas13 = canvas[12];
+canvas13.style.border = "1px solid red";
+var ctx13 = canvas13.getContext("2d");
+ctx13.fillStyle = "red";
+var i = 0,
+		data = {
+						x: 10,
+						y: 10,
+						w: 50,
+						h: 50,
+						strokeStyle: "blue",
+						fillStyle: "yellow"
+					};
+var c1 = new Canvas(data);
+
+console.log(canvas13.toDataURL('image/jpeg', .6));
+
+
+//img13.src = canvas1.toDataURL('image/jpeg', .5);
+
+
+var canvas14 = canvas[13];
+canvas14.style.border = "1px solid red";
+var ctx14 = canvas14.getContext("2d");
+setInterval(function(){
+	ctx13.clearRect(0, 0, w, h);
+	c1.x++;
+	c1.render(ctx13);
+	var img13 = document.getElementById("imgId");
+	img13.src = canvas13.toDataURL('image/png');
+	ctx14.clearRect(0, 0, w, h);
+	ctx14.drawImage(canvas13, 0, 0);
+}, 10);
+
+
+
+
+var canvas15 = canvas[14];
+canvas15.style.border = "1px solid red";
+var ctx15 = canvas15.getContext("2d");
+
+
+
+
+
+
+
+var canvas16 = canvas[15];
+canvas16.style.border = "1px solid red";
+var ctx16 = canvas16.getContext("2d");
+
+
+
+
+
+		//面向对象
+/*		function Cat(data) {
+			this.init(data);
+		}
+		Cat.prototype = {
+			init: function(data){
+				this.age = data.age || "";
+				this.name = data.name || "";
+			},
+			show: function() {
+				console.log("age: " + this.age);
+				console.log("name: " + this.name);
+			}
+		}
+		var cat = new Cat({age:10, name: "大咪"});
+		cat.show();
+*/
+/*
+	function Cat(data){
+		this._init(data);   // 加_表示内部使用
+	}
+	Cat.prototype = {
+		_init: function(data) {
+			this.age = data.age || "";
+			this.name = data.name || "";
+		},
+		show: function() {
+			console.log("age：" + this.age + "   name: " + this.name);
+		}
+	}
+
+	var cat = new Cat({name: "小咪", age: 8});
+	cat.show();*/
+
+
+	//创建对象的类似步骤
+/*	function Cat(name) {
+		this = {};   //先让this指向空对象
+		var t = {};
+		this = t;
+		t._proto_ = Cat.prototype;
+		this.name = name;
+		return this;   //没有return默认return this
+	}*/
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

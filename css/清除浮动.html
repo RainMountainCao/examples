@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>清除浮动</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		section:nth-child(2n+1) {
+			background-color: #ccc;
+		}
+		section {
+			height: 400px;
+		}
+		section:nth-of-type(1) .box {
+			background-color: pink;
+			overflow: hidden;
+		}
+		section:nth-of-type(1) .box div {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			background-color: yellow;
+		}
+		section:nth-of-type(1) .box2 {
+			width: 200px;
+			height: 100px;
+			background-color: green;
+		}
+
+		section:nth-of-type(2) .box {
+			background-color: pink;
+			display: table;
+		}
+		section:nth-of-type(2) .box div {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			background-color: yellow;
+		}
+		section:nth-of-type(2) .box2 {
+			width: 200px;
+			height: 100px;
+			background-color: green;
+		}
+
+		section:nth-of-type(3) .box {
+			background-color: pink;
+			display: table-cell;
+		}
+		section:nth-of-type(3) .box div {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			background-color: yellow;
+		}
+		section:nth-of-type(3) .box2 {
+			width: 200px;
+			height: 100px;
+			background-color: green;
+		}
+
+section:nth-of-type(4) .box {
+	background-color: pink;
+	display: table-caption;
+}
+section:nth-of-type(4) .box div {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	background-color: yellow;
+}
+section:nth-of-type(4) .box2 {
+	width: 200px;
+	height: 100px;
+	background-color: green;
+}
+
+	section:nth-of-type(5) .box {
+		background-color: pink;
+	}
+	section:nth-of-type(5) .box div {
+		float: left;
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+		background-color: yellow;
+	}
+	section:nth-of-type(5) .box:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	section:nth-of-type(5) .box2 {
+		width: 200px;
+		height: 100px;
+		background-color: blue;
+	}
+
+	section:nth-of-type(6) .box div {
+		float: left;
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+		background-color: yellow;
+	}
+	section:nth-of-type(6) .box:before {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	section:nth-of-type(6) .box2 {
+		width: 200px;
+		height: 100px;
+		background-color: blue;
+	}
+
+	section:nth-of-type(7) .box div {
+		float: left;
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+		background-color: yellow;
+	}
+	section:nth-of-type(7) .qiang {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	section:nth-of-type(7) .box2 {
+		width: 200px;
+		height: 100px;
+		background-color: blue;
+	}
+	</style>
+</head>
+<body>
+	<section>
+		<header>overflow: hidden</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>display: table</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>display: table-cell</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>display: table-caption</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>:after</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>:before</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="box2"></div>
+	</section>
+	<section>
+		<header>隔墙法</header>
+		<div class="box">
+			<div class="inner1"></div>
+			<div class="inner2"></div>
+		</div>
+		<div class="qiang"></div>
+		<div class="box2"></div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>小米</title>
+	<style>
+		.box{
+			width: 512px;
+			height: 400px;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#t{
+			position: absolute;
+			top: 0;
+			width: 512px;
+			height: 200px;
+		}
+		#b{
+			position: absolute;
+			bottom: 0;
+			width: 512px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div id="t"></div>
+		<div id="b"></div>
+		<img id="i" src="images/mi.png" alt="" />
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		function $(id){
+			return document.getElementById(id);
+		}
+
+		var count = 0;
+
+		function fun1(){
+			if (count<-1070) {
+				clearInterval(interval_t);
+			}else{
+				count = count -2;
+				$("i").style.margin=count+"px 0";
+			}
+		}
+		function fun2(){
+			if (count>0) {
+				clearInterval(interval_b);
+			}else{
+				count = count + 1;
+				$("i").style.margin=count+"px 0";
+			}
+		}
+		var interval_t;
+		$("t").onmouseover = function(){
+			interval_t = setInterval(fun1,50);
+		}
+
+		$("t").onmouseout = function(){
+			if (interval_t) {
+				clearInterval(interval_t);	
+			}
+		}
+		var interval_b;
+		$("b").onmouseover = function(){
+
+			interval_b = setInterval(fun2,50);
+		}
+
+		$("b").onmouseout = function(){
+			if (interval_b) {
+				clearInterval(interval_b);
+			}	
+		}
+
+
+	}
+</script>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>ch14</title>
+	<style>
+		.editable{
+			width: 200;
+			height: 200px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="post" >
+		<input max="100" min="0" step="5" type="number" size="10" maxlength="5" name="input" required />显示size+3
+		<input type="text" name="text" pattern="\d+">
+		<textarea name="ta" id="ta" cols="30" rows="10">123456789732asdfsdfhjklhkgjkfgdhgbsfdcsdfsghjfgfdcsx</textarea>
+		<input type="submit" name="submit" />
+		<input type="email" name="email" />
+		<input type="url" name="url" />
+		<button name="btn">验证</button>
+		<select name="location" id="selLocation">
+			<option value="sun">sun</option>
+			<option value="moon">moon</option>
+			<option value="mountain">mountain</option>
+			<option value="">china</option>
+			<option >US</option>
+		</select>
+		<select name="star" id="selLocation">
+			<option value="xu">许魏洲</option>
+			<option value="huang">黄景瑜</option>
+			<option value="liu">刘昊然</option>
+			<option value="">肖海洋</option>
+			<option >陈坤</option>
+		</select>
+		<br />
+		<iframe name="richedit" style="height: 100px;width: 100px;" src="blank.htm"></iframe>
+
+		<div class="editable" id="richedit1" contenteditable></div>
+	</form>
+	
+</body>
+<script>
+	window.onload = function(){
+
+		//frames["richedit"].document.execCommand("bold", false, null);
+		//frames["richedit"].document.execCommand("italic", false, null);
+		//frames["richedit"].document.execCommand("createlink", false, "http://www.baidu.com");
+
+		//frames["richedit"].document.designMode = "on";
+
+		var div = document.getElementById("richedit1");
+		div.contentEditable = "true";
+		div.execCommand("bold", false, null);
+		div.execCommand("createlink", false, "http://www.baidu.com");
+
+		
+
+
+
+
+		//alert("aaa");
+		var input = document.forms[0].elements[0];
+		//1）select事件
+/*		var handler = function(event){
+			var target = EventUtil.getTarget(event);
+			target.select();
+		}
+		EventUtil.addHandler(input, "focus", handler);*/
+		//2）取得
+		/*function getSelectedText(textbox){
+			if (typeof textbox.selectionEnd == "number") {
+				return textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
+			}else if (document.selection) {
+				return document.selection.createRange().text;    //ie中没有作用？？？
+			}
+		}*/
+/*		var handler = function(event){
+			var target = EventUtil.getTarget(event);
+			console.log(getSelectedText(target));
+		}
+		EventUtil.addHandler(input, "select", handler);*/
+/*
+		selectText(input, 0, 8);
+
+		//3）选择部分
+		function selectText(textbox, startIndex, stopIndex){
+			if (textbox.setSelectionRange) {
+				textbox.setSelectionRange(startIndex, stopIndex);
+			}else if (textbox.createTextRange) {   
+				var range = textbox.createTextRange();
+				range.collapse(true);
+				range.moveStart("character", startIndex);
+				range.moveEnd("character", stopIndex - startIndex);
+				range.select();
+			}
+			textbox.focus();
+		}*/
+
+
+		//过滤输入
+		//1.屏蔽
+		EventUtil.addHandler(input, "keypress", function(event){
+			event = EventUtil.getEvent(event);
+			var charCode = EventUtil.getCharCode(event);
+															//firefox3.1- 上下键 退格键
+			if (!/\d/.test(String.fromCharCode(charCode)) && charCode > 9 && !event.ctrlKey) {
+				EventUtil.preventDefault(event);
+			}
+		});
+
+		//操作剪切板
+		//粘贴非数字不起作用
+		/*EventUtil.addHandler(input, "paste", function(event){
+			event = EventUtil.getEvent(event);
+			var text = EventUtil.getClipboardText(event);
+
+			if (!/^\d*$/.test(text)) {
+				EventUtil.preventDefault(event);
+			}
+		});*/
+
+
+		//自动切换焦点
+/*		EventUtil.addHandler(input, "keyup", function(event){
+			event = EventUtil.getEvent(event);
+			var target = EventUtil.getTarget(event);
+
+			if (target.value.length == target.maxLength) {
+				var form = target.form;
+				for (var i = 0, len = form.elements.length; i < len; i++) {
+					if(form.elements[i] == target){
+						if (form.elements[i+1]) {
+							form.elements[i+1].focus();
+							return;
+						}
+					}
+				}
+			}
+		});*/
+
+		//HTML5 约束
+		//必填字段
+		/*alert(document.forms[0].elements[0].required);
+		alert("required" in document.createElement("input"));*/
+
+		//2其它输入类型
+		/*var email = document.forms[0].elements["email"];
+		alert(email.type == "email");*/
+
+		//3数值范围
+		//document.forms[0].elements[0].stepUp(5);
+
+		//4输入模式
+		//alert(document.forms[0].elements["text"].pattern);
+		//alert("pattern" in document.createElement("input"));
+
+		//5检测有效性
+		/*if (document.forms[0].elements[0].checkValidity()) {
+
+		}
+
+		if (document.forms[0].checkValidity()) {
+
+		}*/
+
+		EventUtil.addHandler(document.forms[0].elements["btn"], "click", function(event){
+			/*if (input.validity && !input.validity.valid) {
+			if (input.validity.valueMissing) {
+				alert("required");
+			}else if (input.validity.typeMismatch) {
+				alert("mail or url");
+			}else if(input.validity.rangeOverflow){
+				alert("value is overflow");
+			}else if(input.validity.rangeUnderflow){
+				alert("value is Underflow");
+			}else if(input.validity.stepMismatch){
+				alert("value is stepMismatch");
+			}else if(input.validity.tooLong){
+				alert("value is tooLong");
+			}else {
+				alert("value is invalid");
+			}
+		}*/
+		});
+
+		//document.forms[0].noValidate = true;
+		//document.forms[0].elements["submit"].formNoValidate = true;
+
+
+		//选择框脚本
+		var selectBox = document.forms[0].elements["location"];
+		//alert(selectBox.options[0].value);
+		//alert(selectBox.options[0].text);
+
+/*		alert(selectBox.options[0].firstChild.nodeValue);
+		alert(selectBox.options[0].getAttribute("value"));*/
+
+		//1选择选项
+/*		var selectedOption = selectBox.options[selectBox.selectedIndex];
+		alert(selectedOption.value +"  "+ selectedOption.text);*/
+
+		//selectBox.options[3].selected = true;
+
+/*		function getSelectedOption(selectBox){
+			var result = new Array();
+			var option = null;
+			for(var i =0, len = selectBox.options.length; i < len; i++){
+				if (selectBox.options[i].selected) {
+					option = selectBox.options[i];
+					result.push(option);
+				}
+			}
+			return result;
+		}
+
+		selectBox.multiple = true;
+
+		selectBox.options[3].selected = true;
+		selectBox.options[2].selected = true;
+		selectBox.options[4].selected = true;
+
+	    var arr = getSelectedOption(selectBox);*/
+//	    alert(arr);
+
+	    /*for(var i=0, len=arr.length; i<len; i++){
+	    	alert(arr[i].value);
+	    }
+*/
+		//添加选项	    
+		//方法1 DOM   document.createTextNode("new option");
+/*		var newOption = document.createElement("option");
+		newOption.appendChild(document.createTextNode("new option"));
+		newOption.setAttribute("value", "new");
+		selectBox.appendChild(newOption);*/
+		//方法2
+/*		var newOption = new Option("option text", "option value");
+		selectBox.appendChild(newOption);*/
+		//方法3
+/*		var newOption = new Option("option", "value");
+		selectBox.add(newOption, selectBox.options[2]);*/
+
+		//移除选项
+/*		//方法1 DOM
+		selectBox.removeChild(selectBox.options[0]);
+		//方法2 索引
+		selectBox.remove(0);
+
+		for(var i=0, len=selectBox.options.length; i<len; i++){
+			selectBox.remove(0);
+		}*/
+/*
+		//移动和重排选项
+		var selectStar = document.forms[0].elements["star"];
+
+		selectStar.appendChild(selectBox.options[0]);
+
+		selectBox.insertBefore(selectStar.options[0], selectBox.options[2])	;*/
+
+		//表单序列化
+/*		function serialize(form) {
+			var parts = {},
+			field = null,
+			i,
+			len,
+			j,
+			optLen,
+			option,
+			optValue;
+
+			for(i=0; len=form.elements.length; i<len; i++) {
+				field = form.elements[i];
+
+				switch(field.type) {
+					case: "select-one":
+					case: "select-multiple":
+
+						if (field.name.length) {
+							for(j=0, optLen=field.options.length; j<optLen; j++) {
+								option = field.options[j];
+								if (option.selected) {
+									optValue = "";
+									if (option.hasAttribute) {
+										optValue = (option.hasAttribute("value") ? option.value : option.text);
+									}else{
+										optValue = (option.attribute["value"].specified ? option.value : option.text);
+									}
+									parts.push(encodeURLComponent(field.name) + "=" +encodeURLComponent(optValue));
+								}
+							}
+						}
+						break;
+					case undefined:
+					case "file":
+					case "submit":
+					case "reset":
+					case "button":
+						break;
+
+					case "radio":
+					case "checkbox":
+						if (!field.checked) {
+							break;
+						}
+					default:
+						if (field.name.length) {
+							parts.push(encodeURLComponent(field.name) + "=" + encodeURLComponent(field.value));
+						}
+				}
+			}
+			return parts.join("&");
+		}*/
+		//主要两点
+		//option.hasAttribute("value") ? option.value : option.text;
+		//option.attribute["value"].specified ? option.value : option.text;
+
+		//富文本编辑
+
+
+
+
+
+
+
+
+
+
+
+	}
+
+
+
+
+	EventUtil = {
+		getEvent: function(event){
+			return event ? event : window.event;
+		},
+
+		addHandler: function(element, type, handler){
+			if (element.addEventListener) {
+				element.addEventListener(type, handler, false);  
+			}else if(element.attachEvent){
+				element.attachEvent("on" + type, handler);
+			}else{
+				element["on" + type] = handler;
+			}
+		},
+
+		removeHandler: function(element, type, handler){
+			if (element.removeEventListener) {
+				element.removeEventListener(type, handler, false);
+			}else if (element.detachEvent) {
+				element.detachEvent("on" + type, handler);
+			}else{
+				element["on" + type] = null;
+			}
+		},
+
+		getTarget: function(event){
+			return event.target || event.srcElement;
+		},
+
+		preventDefault: function(event){
+			if (event.preventDefault) {
+				event.preventDefault();
+			}else{
+				event.returnValue = false;
+			}
+		},
+
+		stopPropagation: function(event){
+			if (event.stopPropagation) {
+				event.stopPropagation();
+			}else{
+				event.cancelBubble();
+			}
+		},
+
+		getCharCode: function(event){
+			if (typeof event.charCode == "number") {
+				return event.charCode;
+			}else{
+				return event.keyCode;
+			}
+		},
+
+		getClipboardText: function(event){
+			var clipboardData = (event.clipboardData || window.clipboardData);
+			return clipboardData.getData("text");
+		},
+
+		setClipboardText: function(event, value){
+			if (event.clipboardData) {
+				return event.clipboardData.setData("text/plain", value);
+			}else if(event.clipboardData){
+				return window.clipboardData.setData("text", value);
+			}
+		}
+	}
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

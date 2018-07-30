@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>ch13</title>
+	<style>
+		.box{
+			height: 60px;
+			width: 200px;
+			background-color: pink;
+		}
+		body{
+			height: 1000px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="box"></div>
+	<img src="ch13.png" id="img" />
+	<a href="http://www.baidu.com">百度一下 你就知道</a>
+</body>
+<script>
+		
+		EventUtil = {
+			getEvent: function(event){
+				return event ? event : window.event;
+			},
+
+			addHandler: function(element, type, handler){
+				if (element.addEventListener) {
+					element.addEventListener(type, handler, false);  
+				}else if(element.attachEvent){
+					element.attachEvent("on" + type, handler);
+				}else{
+					element["on" + type] = handler;
+				}
+			},
+
+			removeHandler: function(element, type, handler){
+				if (element.removeEventListener) {
+					element.removeEventListener(type, handler, false);
+				}else if (element.detachEvent) {
+					element.detachEvent("on" + type, handler);
+				}else{
+					element["on" + type] = null;
+				}
+			},
+
+			getTarget: function(event){
+				return event.target || event.srcElement;
+			},
+
+			preventDefault: function(event){
+				if (event.preventDefault) {
+					event.preventDefault();
+				}else{
+					event.returnValue = false;
+				}
+			},
+
+			stopPropagation: function(event){
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				}else{
+					event.cancelBubble();
+				}
+			},
+
+			getCharCode: function(event){
+				if (typeof event.charCode == "number") {
+					return event.charCode;
+				}else{
+					return event.keyCode;
+				}
+			},
+
+			getClipboardText: function(event){
+				var clipboardData = (event.clipboardData || window.clipboardData);
+				return clipboardData.getData("text");
+			},
+
+			setClipboardText: function(event, value){
+				if (event.clipboardData) {
+					return event.clipboardData.setData("text/plain", value);
+				}else if(event.clipboardData){
+					return window.clipboardData.setData("text", value);
+				}
+			}}
+
+		//事件类型
+		//(一) UI事件(DOMActivate)  
+		//HTML事件
+
+		//1.load
+//			EventUtil.addHandler(window, "load", function(event){
+				//alert("loaded!");
+/*				var img = document.createElement("img");
+				EventUtil.addHandler(img, "load", function(event){
+					event = EventUtil.getEvent(event);
+					alert(EventUtil.getTarget(event).src);
+				});
+				document.body.appendChild(img);
+				img.src="ch13.png";*/
+
+/*				var image = new Image();
+				EventUtil.addHandler(image, "load", function(event){
+					event = EventUtil.getEvent(event);
+					//alert(EventUtil.getTarget(event).src);
+				});
+				image.src="ch13.png";
+				document.body.appendChild(image);
+*/
+/*				var script = document.createElement("script");
+				EventUtil.addHandler(script, "load", function(event){
+					alert("loaded!!!");
+				});
+				script.src = "test.js";
+				document.body.appendChild(script);*/
+
+/*				var link = document.createElement("link");
+				link.type = "text/css";
+				link.rel = "stylesheet";
+				EventUtil.addHandler(link, "load", function(event){
+					alert("css loaded!!!");
+				});
+				link.href = "css.css";
+				document.getElementsByTagName("head")[0].appendChild(link);
+*/
+//			});
+
+
+
+		//2.unload
+/*		var img = document.getElementById("img");
+		EventUtil.addHandler(window, "load", function(event){
+			EventUtil.addHandler(img, "unloaded", function(event){
+				//alert("unloaded!!!");
+			});
+			document.body.removeChild(img);
+		});*/
+
+		//abort error select
+		//3.resize
+/*		EventUtil.addHandler(window, "resize", function(event){
+			console.log("Resized");
+		});*/
+		//4.scroll
+/*		EventUtil.addHandler(window, "scroll", function(event){
+			if (document.compatMode == "CSS1Compat") {
+				console.log(document.documentElement.scrollTop);
+			} else {
+				console.log(document.body.scrollTop);
+			}
+		});*/
+
+		//(二)焦点事件
+		/*
+			blur
+			DOMFocusIn
+			DOMFocusOut
+			focus
+			focusin
+			focusout
+		*/
+		//(三) 鼠标与滚轮事件
+		/*  click
+			dbclick
+		    mousedown
+		    mouseenter
+		    mouseleave
+			mousemove
+			mouseout
+			mouseover
+			mouseup
+		*/
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

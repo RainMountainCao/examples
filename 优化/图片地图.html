@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>图片地图</title>
+</head>
+<body>
+	<img src="images/4.jpg" usemap="#Map" />
+	<map name="Map" id="Map">
+		<!-- 同时加id和name两个属性，因为不同的浏览器识别不同 -->
+		<area shape="rect" coords="250,30,500,310" href="#" onclick="return show('王大陆')" />
+		<area shape="rect" coords="510,30,720,310" href="#" onclick="return show('许魏洲')" />
+	</map>
+</body>
+</html>
+<script>
+	function show(arg) {
+		alert(arg);
+		return false;
+	}
+</script>

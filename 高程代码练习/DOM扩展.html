@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+	<title>11DOM扩展</title>
+	<style type="text/css">
+		.box2{
+			background-color: pink;
+		}
+		.box3{
+			width: 300px;
+			height: 300px;
+		}
+		form{
+			position: absolute;
+			top: 700px;
+			width: 300px;
+			height: 300px;
+			background-color: yellow;
+		}
+		body{
+			height: 2000px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			//Selector API level1  ie8+
+			//1 querySelector
+/*			var mydiv = document.querySelector("#mydiv");
+			alert(mydiv.innerHTML);*/
+
+/*			
+			//2 querySelectorAll
+			var mydiv = document.getElementById("mydiv").querySelectorAll(".mydiv");
+			for (var i = mydiv.length - 1; i >= 0; i--) {
+				mydiv[i].innerHTML = i;
+			}*/
+
+			//Selector API level2
+			//3 matchesSelector
+/*			function matchesSelector(element, selector){
+				if (element.matchesSelector) {
+					return element.matchesSelector(selector);
+				}else if(element.msMatchesSelector){
+					return element.msMatchesSelector(selector); // ie9  ms
+				}else if(element.mozMatchesSelector){
+					return element.mozMatchesSelector(selector);  //firefox moz
+				}else if(element.webkitMatchesSelector){//chrom safair  webkit
+					return element.webkitMatchesSelector(selector); 
+				}else{
+					throw new Error("Not Supported.");
+				}
+			}
+			var mydiv = document.getElementById("mydiv");
+			if (matchesSelector(mydiv, "#mydiv")) {
+				alert("true");
+			}else{
+				alert("false");
+			}*/
+
+
+			//元素遍历  ElementTravel
+			//1 childElementCount
+			//  firstElementChild
+			//	lastElementChild
+			//	previousElementSibling
+			//  nextElementSibling
+
+/*			//跨浏览器遍历
+			var mydiv = document.getElementById("mydiv");
+			var i,
+				len,
+				child = mydiv.firstChild;
+			while(child != mydiv.lastChild){
+				if (child.nodeType == 1) {   //需要判断nodeType类型
+					processChild(child);
+				}
+				child = child.nextSibling;
+			}
+
+			//Element Travel 方法
+			var i,
+				len,
+				child = mydiv.firstElementChild;
+			while(child != mydiv.lastElementChild){
+				processChild(child);    //???
+				child = child.nextElementSibling;
+			}*/
+
+
+			//html5
+			var element = document.getElementById("mydiv");
+/*			var classNames = element.className.split("/\s+/");
+			var classNames = element.className.split(" ");
+
+			var pos = -1,
+				i,
+				len;
+			for (var i = classNames.length - 1; i >= 0; i--) {
+				if(classNames[i] == "box1"){
+					pos = i;
+					break;
+				}
+			}
+
+			classNames.splice(i,1);*/
+			//element.className = classNames.join(" ");
+
+
+			//DOMTokenList
+			//element.classList.remove("box2");
+			//element.classList.add("box3");
+			//element.classList.toggle("box3");
+
+			var btn = document.getElementsByTagName("button")[0];
+			//btn.focus();
+			//alert(document.activeElement == btn);
+
+			//html5扩展  HTMLDocument
+			//alert(document.readyState == "complete");
+			//alert(document.readyState == "loading");
+			/*if (document.compatMode == "CSS1Compat") {
+				alert("standard");   //BackCompat
+			}else{
+				alert("quirks mode");
+			}*/
+			//          chrom safari                           
+			//var head = document.head || document.getElementsByTagName("head")[0];
+
+
+			//字符集属性    不可以  Why???  不能达到效果
+			//alert(document.charset);
+			//document.charset = "UTF-16";
+			//alert(document.charset);
+
+
+			//firefox也可以？？
+			//  ie safari opera chrome              ie safari  chrome 
+			/*if (document.charset || document.defaultCharset) {
+				alert("");
+			}*/
+			//fairfox   ??  都不可以
+/*			if (document.characterset) {
+				alert("a");
+			}*/
+
+			//自定义数据属性
+			//alert(element.dataset.appid + " " + element.dataset.myname);
+
+			//插入标记
+			//alert(element.innerHTML);
+			//<=ie9  不是8  ???
+			//element.innerHTML = "<input type=\"hidden\"><script defer>alert('aa');<\/script>";
+
+
+			/*var text = "<a href='#' onclick=\"alert('hi')\">click me </a>";
+			alert(window.toStaticHTML(text));*/   //ie所有可实现此方法
+
+			//alert(element.outerHTML);
+			//element.outerHTML = "<p>aaaa</p>" //和下面代码一样
+			var div1 = element.children[0];
+			/*var p = document.createElement("p");
+			p.appendChild(document.createTextNode("aaaa"));
+			element.replaceChild(p,div1);*/
+
+	/*		var p = document.createElement("p");
+			p.appendChild(document.createTextNode("aa"));
+			element.replaceChild(p,div1);*/
+
+			//insertAdjacentHTML()
+			/*element.insertAdjacentHTML("beforeBegin", "<p>aa</p>");
+			element.insertAdjacentHTML("afterEnd", "<p>cccc</p>");
+			element.insertAdjacentHTML("beforeEnd", "<p>ddd</p>");
+			element.insertAdjacentHTML("afterBegin", "<p>bbbb</p>");*/
+
+			//避免多次用innerHTML方法  尽量将字符串写完之后 再总体调innerHTML，设置innerHTML或者outerHTML时，会调用HTML解析器，比执行js快得多,尽量这样做
+
+			//scrollIntoView   chrome没有此方法   firefox  ie safari opera
+			//document.forms[0].scrollIntoView(true);
+			//document.forms[0].scrollIntoView(false);
+
+			//11.4专有扩展
+			//alert(document.documentMode);
+
+			//children  <=ie8包含注释
+			//alert(element.children.length);
+
+			//contains
+			//alert(document.documentElement.contains(document.body));
+			//DOM3 compareDocumentPosition()
+			/*var result = document.documentElement.compareDocumentPosition(document.body);
+			alert(!!(result & 16));*/
+
+			function contains(refNode, otherNode){
+				if (typeof refNode.contains == "function" // safari <= 522
+					&& (!client.engine.webkit || client.engin.webkit >= 522)) {
+					return refNode.contains(otherNode);
+				}else if(typeof refNode.compareDocumentPosition == "function"){
+					return !!(refNode.compareDocumentPosition(otherNode) & 16);
+				}else{
+					var node = otherNode.parentNode;
+					do{
+						if (node === refNode) {
+							return true;
+						}else{
+							node = node.parentNode;
+						}
+					}while(node !== null);
+					return false;
+				}
+			}
+
+
+			//插入文本
+			//element.innerText = "aaa";
+			//alert(element.innerText);
+			//element.innerText = element.innerText;   //过滤掉了html标签
+
+/*			function getInnerText(element){
+				return (typeof element.textContent == "string")?
+					element.textContent : element.innerText;
+			}
+
+			function setInnerText(element, text){
+				if(typeof element.textContent == "string"){
+					element.textContent = text;
+				}else{
+					element.innerText = text;
+				}
+			}
+*/
+			//setInnerText(element, "aaaaaaaaaa");
+/*			console.log(getInnerText(element));
+			alert(element.innerText);
+			alert(element.textContent);*/
+			//innerText忽略行内样式和脚本  textContent会返回行内样式脚本
+
+			//element.outerText = "aaaaaaa";    //调用节点本身也被覆盖
+
+			//滚动
+			//对象时元素容器
+			/*scrollIntoView
+			scrollIntoViewIfNeeded*/
+			//document.forms[0].scrollIntoViewIfNeeded(true);
+
+			//对象时元素本身  不起作用？？？
+			/*scrollByLines
+			scrollByPages*/
+			//document.body.scrollByLines(5);
+			//document.body.scrollByPages(1);
+
+			btn.onclick = function(){
+				//element.classList.toggle("box3");
+				if (element.classList.contains("box2")) {
+					//alert("oo");
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="selected" >11</div>
+	<div id="mydiv" style="width: 300px;" class="box1 box2" data-appid="123456" data-myname="mary">
+		<div class="mydiv" id="div1" style="width: 300px;">11</div>
+		<div class="mydiv">11</div>
+		<div class="mydiv">11</div>
+		<!-- <div class="mydiv">22</div> -->
+	</div>
+	<button>按钮</button>
+	<form></form>
+</body>
+</html>

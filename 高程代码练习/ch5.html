@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>ch5</title>
+	<script>
+		var numbers = [1,2,3,4,5,6,7,8,9];
+		var everyResult = numbers.every(function(item, index, array){
+			//return (item > 0);     true
+			return (item > 2);     //false
+ 		});
+		console.log("every:" + everyResult);
+
+		var someResult = numbers.some(function(item, index, array){
+			return (item > 2);
+		});
+		console.log("some:" + someResult);
+
+		var filterResult = numbers.filter(function(item, index, array){
+			return (item > 2);
+		});
+		console.log("filter:" + filterResult);
+
+		var mapResult = numbers.map(function(item, index, array){
+			return item*2;
+		});
+		console.log("map:" + mapResult);
+
+		numbers.forEach(function(item, index, array){
+			console.log("forEach:" + (item * 2));
+		});
+
+		var reduceResult = numbers.reduce(function(prev, cur, index, array){
+			return prev + cur;
+		});
+		var reduceRightResult = numbers.reduceRight(function(prev, cur, index, array){
+			return prev + cur;
+		});
+		console.log("reduceResult:" + reduceResult);
+		console.log("reduceRightResult:" + reduceRightResult);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

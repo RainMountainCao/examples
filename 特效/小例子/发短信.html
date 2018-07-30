@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>短信倒计时</title>
+	<style>
+		.box{
+			margin: 40px auto;
+			background-color: pink;
+			width: 300px;
+			height: 150px;
+		}
+		input{
+			margin-top: 65px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var btn = document.getElementsByTagName("button")[0];
+			btn.onclick = function(){
+				var count = 5;
+				btn.innerHTML = "还有" + count + "秒";
+				var interval = setInterval(fun,1000);
+				this.disabled = "true";
+				var that = this;
+				function fun(){
+					if (count == 0) {
+						that.disabled = false;
+						btn.innerHTML = "点击重新发送";
+						clearInterval(interval);
+						return;
+					}
+					count--;
+					btn.innerHTML = "还有" + count + "秒";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<input type="text" />
+		<button>点击发送验证码</button>
+	</div>
+</body>
+</html>

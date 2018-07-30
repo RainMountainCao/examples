@@ -1,0 +1,134 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="100%" height="100%" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+
+<!-- 
+    <filter> 标签的 id 属性可为滤镜定义一个唯一的名称（同一滤镜可被文档中的多个元素使用）
+    filter:url 属性用来把元素链接到滤镜。当链接滤镜 id 时，必须使用 # 字符
+    滤镜效果是通过 <feGaussianBlur> 标签进行定义的。fe 后缀可用于所有的滤镜
+    <feGaussianBlur> 标签的 stdDeviation 属性可定义模糊的程度
+    in="SourceGraphic" 这个部分定义了由整个图像创建效果
+
+ -->
+
+<!--  <defs>
+<filter id="Gaussian_Blur">
+<feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+</filter>
+</defs>
+
+<ellipse cx="200" cy="150" rx="70" ry="40"
+style="fill:#ff0000;stroke:#000000;
+stroke-width:2;filter:url(#Gaussian_Blur)"/> -->
+
+
+<!-- 
+	
+    <linearGradient> 标签的 id 属性可为渐变定义一个唯一的名称
+    fill:url(#orange_red) 属性把 ellipse 元素链接到此渐变
+    <linearGradient> 标签的 x1、x2、y1、y2 属性可定义渐变的开始和结束位置
+    渐变的颜色范围可由两种或多种颜色组成。每种颜色通过一个 <stop> 标签来规定。offset 属性用来定义渐变的开始和结束位置。
+
+ -->
+<!-- <defs>
+<linearGradient id="orange_red" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:rgb(255,255,0);
+stop-opacity:1"/>
+<stop offset="100%" style="stop-color:rgb(255,0,0);
+stop-opacity:1"/>
+</linearGradient>
+</defs>
+ -->
+
+
+<!-- <defs>
+<linearGradient id="orange_red" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgb(255,255,0);
+stop-opacity:1"/>
+<stop offset="100%" style="stop-color:rgb(255,0,0);
+stop-opacity:1"/>
+</linearGradient>
+</defs>
+
+<ellipse cx="200" cy="190" rx="85" ry="55"
+style="fill:url(#orange_red)"/> -->
+
+
+<!-- <defs>
+<radialGradient id="grey_blue" cx="50%" cy="50%" r="50%"
+fx="50%" fy="50%">
+<stop offset="0%" style="stop-color:rgb(200,200,200);
+stop-opacity:0"/>
+<stop offset="100%" style="stop-color:rgb(0,0,255);
+stop-opacity:1"/>
+</radialGradient>
+</defs>
+
+<ellipse cx="230" cy="200" rx="110" ry="100"
+style="fill:url(#grey_blue)"/>
+ -->
+<defs>
+<radialGradient id="grey_blue" cx="20%" cy="40%" r="50%"
+fx="50%" fy="50%">
+<stop offset="0%" style="stop-color:rgb(200,200,200);
+stop-opacity:0"/>
+<stop offset="100%" style="stop-color:rgb(0,0,255);
+stop-opacity:1"/>
+</radialGradient>
+</defs>
+
+<ellipse cx="230" cy="200" rx="110" ry="100"
+style="fill:url(#grey_blue)"/>
+
+</svg>
+
+
+<!-- <?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="500" height="500" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="300" height="300" rx="20" ry="20" x="20" y="30" 
+style="fill:rgb(0,0,255);stroke-width:1;
+stroke:red; fill-opacity:0.3; stroke-opacity:0.8;"/>
+
+<circle cx="62" cy="32" r="56" stroke="black"
+stroke-width="2" fill="red"/>
+
+<ellipse cx="52" cy="32" rx="50" ry="30"
+style="fill:rgb(200,100,50);
+stroke:rgb(0,0,100);stroke-width:2"/>
+
+<line x1="0" y1="0" x2="300" y2="100"
+style="stroke:rgb(99,99,99);stroke-width:2"/>
+
+<polygon points="220,30 300,30 170,80"
+style="fill:red;
+stroke:#000000;stroke-width:1"/>
+
+<polyline points="0,0 0,20 20,20 20,40 40,40 40,60"
+style="fill:white;stroke:red;stroke-width:2;fill-opacity:0;"/>
+
+<path d="M153 334
+C153 334 151 334 151 334
+C151 339 153 344 156 344
+C164 344 171 339 171 334
+C171 322 164 314 156 314
+C142 314 131 322 131 334
+C131 350 142 364 156 364
+C175 364 191 350 191 334
+C191 311 175 294 156 294
+C131 294 111 311 111 334
+C111 361 131 384 156 384
+C186 384 211 361 211 334
+C211 300 186 274 156 274"
+style="fill:white;stroke:red;stroke-width:2;fill-opacity:0;"/>
+
+</svg>
+ -->
+

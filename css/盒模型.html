@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>盒模型</title>
+	<style>
+		.box {
+			width: 300px;
+			height: 300px;
+			margin: 20px auto;
+			background-color: gold;
+			overflow: hidden;
+		}
+		#box1 {
+			/* box-sizing: border-box; */
+			width: 100px;
+			height: 100px;
+			padding: 20px;
+			border: 10px solid #ccc;
+			background-color: green;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="box1" id="box1"></div>
+	</div>
+</body>
+</html>
+<script>
+	var dom = document.getElementById('box1');
+	//console.log(window.getComputedStyle(dom).width);
+	console.log(dom.offsetWidth);
+	console.log(11);
+</script>

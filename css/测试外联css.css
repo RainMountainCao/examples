@@ -1,0 +1,32 @@
+body {
+		display: flex;
+		flex-direction: column;
+	}
+	.header {
+		order: 2;
+		height: 40px;
+		flex: 0 0 40px;
+		width: 100%;
+		background-color: gold;
+	}
+	.left {
+		order: 3;
+		height: 100px;
+		flex: 0 0 100px;
+		width: 100%;
+		background-color: purple;
+	}
+	.right {
+		order: 1;
+		height: 200px;
+		width: 100%;
+		margin: 0;
+		background-color: #ccc;
+	}
+	.footer {
+		order: 4;
+		height: 40px;
+		flex: 0 0 40px;
+		width: 100%;
+		background-color: pink;
+	}

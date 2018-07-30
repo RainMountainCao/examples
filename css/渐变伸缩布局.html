@@ -1,0 +1,774 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>渐变过渡动画</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		body {
+			background-color: rgba(0,0,0,1);
+		}
+
+		.main {
+			margin: 0 auto;
+			width: 1065px;
+			height: 6000px;
+			background-color: green;
+		}
+
+		.item1 {
+			width: 325px;
+			height: 325px;
+			background-color: rgba(255,255,255,0.3);
+			float: left;
+			margin-top: 22px;
+			margin-left: 22px;
+			box-shadow: 8px 10px 10px rgba(0,0,0,0.5);
+
+			position: relative;
+			cursor: pointer;
+
+			display: flex;
+		}
+
+		.item1:after {
+			content: attr(data-tag);
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+
+			width: 100%;
+			height: 100%;
+
+			background-color: rgba(0,0,0,0.3);
+
+			color: #fff;
+			line-height: 100px;
+			text-align: center;
+			font-size: 24px;
+			font-weight: 700;
+
+			transition: all 0.3s ease-in;
+
+			z-index: -1;
+		}
+
+		.item1:hover:after {
+			z-index: 100;
+		}
+
+		.box1 {
+			width: 180px;
+			height: 180px;
+			margin: auto;
+		}
+
+		.item1:nth-child(1) .box1 {
+			/* background-image: linear-gradient(#fff,red); */
+			background-image: linear-gradient(to bottom, #fff, red);
+		}
+
+		.item1:nth-child(2) .box1:nth-child(1) {
+			background-image: linear-gradient(0deg, #fff, red);
+		}
+
+		.item1:nth-child(3) .box1:nth-child(1) {
+			background-image: linear-gradient(90deg, #fff, red);
+		}
+
+		.item1:nth-child(4) .box1:nth-child(1) {
+			background-image: linear-gradient(red,orange,yellow,green,blue,skyblue,purple);
+		}
+
+		.item1:nth-child(5) .box1:nth-child(1) {
+			/* background-image: linear-gradient(135deg, #fff, red); */
+			background-image: linear-gradient(to right bottom, #fff, red);
+		}
+
+		.item1:nth-child(6) .box1:nth-child(1) {
+			background-image: linear-gradient(90deg, #fff 30%, red 30%);
+		}
+
+
+		.item1:nth-child(7) .box1:nth-child(1) {
+			background-image: linear-gradient(90deg, #fff 30%, red 60%);
+		}
+
+		.item1:nth-child(8) .box1:nth-child(1) {
+			background-image: linear-gradient(90deg, #fff 50%, red 50%);
+		}
+
+		.item1:nth-child(9) .box1:nth-child(1) {
+			background-image: radial-gradient(yellow, red);
+		}
+
+		.item1:nth-child(10) .box1:nth-child(1) {
+			background-image: radial-gradient( 30px 60px at center center, yellow, red);
+		}
+
+		.item1:nth-child(11) .box1:nth-child(1) {
+			background-image: radial-gradient( 30px 60px at left center, yellow, red);
+		}
+
+		.item1:nth-child(12) .box1:nth-child(1) {
+			background-image: radial-gradient( 30px 60px at left top, yellow, red);
+		}
+
+		.item1:nth-child(13) .box1:nth-child(1) {
+			background-image: repeating-radial-gradient( yellow 80%, red 100%);
+		}
+
+		.item1:nth-child(14) .box1:nth-child(1) {
+			background-image: repeating-linear-gradient( yellow 80%, red 100%);
+		}
+
+		.item1:nth-child(15) .box1:nth-child(1) {
+			width: 120px;
+			height: 40px;
+			background-color: yellow;
+			background-image: linear-gradient(to bottom, red 70%, rgba(0,0,0,0.5) 100%);
+		}
+
+		.item1:nth-child(16) .box1:nth-child(1) {
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			background-color: red;
+			background-image: radial-gradient(circle at 50px 50px, transparent, rgba(0,0,0,1)); 
+		}
+
+		.item1:nth-child(17) .box1:nth-child(1) {
+			width: 160px;
+			height: 40px;
+			background-color: yellow;
+			background-image: linear-gradient(135deg,
+			                                  red 25%,
+				                              transparent 25%,
+				                              transparent 50%,
+				                              red 50%,
+		                                      red 75%,
+     	                                      transparent 75%,
+	                                          transparent 100%);
+			background-size: 40px 40px;
+			/* background-repeat: no-repeat; */
+		}
+
+		.box3 {
+			width: 50px;
+			height: 50px;
+			background-color: yellow;
+
+			text-align: center;
+			line-height: 50px;
+			color: #000;
+
+			margin: 4px;
+		}
+
+		.box2 {
+			width: 325px;
+			height: 325px;
+			background-color: transparent;
+			display: flex;
+		}
+
+		.item1:nth-child(18) .box3:nth-child(1) {
+			margin: auto;
+		}
+
+		.item1:nth-child(18) .box3:nth-child(2) {
+			margin: auto;
+		}
+
+		.item1:nth-child(18) .box3:nth-child(3) {
+			margin: auto;
+		}
+
+		.item1:nth-child(19) .box2:nth-child(1) {
+			justify-content: space-around;
+			flex-direction: column;
+		}
+
+		.item1:nth-child(20) .box2:nth-child(1) {
+			justify-content: space-between;
+			flex-direction: column-reverse;
+		}
+
+		.item1:nth-child(21) .box2:nth-child(1) {
+			justify-content: space-around;
+			flex-direction: row-reverse;
+		}
+
+		.item1:nth-child(22) .box2:nth-child(1) {
+			justify-content: flex-start;
+		}
+
+		.item1:nth-child(23) .box2:nth-child(1) {
+			justify-content: flex-end;
+		}
+
+		.item1:nth-child(24) .box2:nth-child(1) {
+			justify-content:  center;
+		}
+
+		.item1:nth-child(25) .box2:nth-child(1) {
+			justify-content: space-around;
+		}
+
+		.item1:nth-child(26) .box2:nth-child(1) {
+			justify-content: space-between;
+		}
+
+		.item1:nth-child(27) .box2:nth-child(1) {
+			justify-content: space-around;
+			align-items: flex-start;
+		}
+
+		.item1:nth-child(28) .box2:nth-child(1) {
+			justify-content: space-around;
+			align-items: flex-end;
+		}
+
+		.item1:nth-child(29) .box2:nth-child(1) {
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.item1:nth-child(30) .box3:nth-child(2) {
+			line-height: 100px;
+		}
+
+		.item1:nth-child(30) .box2:nth-child(1) {
+			justify-content: space-around;
+			align-items: baseline;
+		}
+
+		
+
+		.item1:nth-child(31) .box3:nth-child(1) {
+			height: auto;
+		}
+		.item1:nth-child(31) .box3:nth-child(2) {
+			height: 180px;
+		}
+		.item1:nth-child(31) .box2:nth-child(1) {
+			justify-content: space-around;
+			align-items: stretch;
+		}
+
+		.item1:nth-child(32) .box2:nth-child(1) {
+			justify-content: space-around;
+
+			flex-wrap: wrap;
+			align-content: flex-start;
+		}
+
+		.item1:nth-child(33) .box2:nth-child(1) {
+			justify-content: space-around;
+			
+			flex-wrap: wrap;
+			align-content: flex-end;
+		}
+
+		.item1:nth-child(34) .box2:nth-child(1) {
+			justify-content: space-around;
+			
+			flex-wrap: wrap;
+			align-content: center;
+		}
+
+		.item1:nth-child(35) .box2:nth-child(1) {
+			justify-content: space-around;
+			
+			flex-wrap: wrap;
+			align-content: space-between;
+		}
+
+		.item1:nth-child(36) .box2:nth-child(1) {
+			justify-content: space-around;
+			
+			flex-wrap: wrap;
+			align-content: space-around;
+		}
+		
+		.item1:nth-child(37) .box3 {
+			height: auto;
+		}
+		.item1:nth-child(37) .box2:nth-child(1) {
+			justify-content: space-around;
+			
+			flex-wrap: wrap;
+			align-content: stretch;
+		}
+
+		.item1:nth-child(38) .box3:nth-child(1) {
+			flex: 1;
+		}
+		.item1:nth-child(38) .box3:nth-child(2) {
+			flex: 2;
+		}
+		.item1:nth-child(38) .box3:nth-child(3) {
+			flex: 1;
+		}
+
+		.item1:nth-child(39) .box3:nth-child(1) {
+			flex: 1;
+		}
+		.item1:nth-child(39) .box3:nth-child(2) {
+			flex: 2;
+		}
+		.item1:nth-child(39) .box3:nth-child(3) {
+			flex: 1;
+		}
+		.item1:nth-child(39) .box3:nth-child(4) {
+			width: 100px;
+		}
+
+		.item1:nth-child(40) .box2:nth-child(1) {
+			justify-content:space-around;
+			align-items: center;
+		}
+		.item1:nth-child(40) .box3:nth-child(1) {
+			flex: 1;
+		}
+		.item1:nth-child(40) .box3:nth-child(2) {
+			flex: 2;
+		}
+		.item1:nth-child(40) .box3:nth-child(3) {
+			flex: 1;
+			align-self: flex-end;
+		}
+
+		.item1:nth-child(41) .box2:nth-child(1) {
+			justify-content:space-around;
+			align-items: center;
+		}
+		.item1:nth-child(41) .box3:nth-child(1) {
+			order: 20;
+		}
+		.item1:nth-child(41) .box3:nth-child(2) {
+			order: 23;
+		}
+		.item1:nth-child(41) .box3:nth-child(3) {
+			order: 16;
+		}
+		.item1:nth-child(41) .box3:nth-child(4) {
+			order: 25;
+		}
+		.item1:nth-child(41) .box3:nth-child(5) {
+			order: 12;
+		}
+
+		.item1:nth-child(42) ul {
+			margin: 38px auto;
+			list-style: none;
+			width: 300px;
+			height: 30px;
+			background-color: yellow;
+
+			display: flex;
+
+		}
+		.item1:nth-child(42) li {
+			flex: 1;
+			background-color: yellow;
+			border-left: 3px solid red;
+		}
+		.item1:nth-child(42) li:last-child {
+			border-right: 3px solid red;
+		}
+
+
+		.item1:nth-child(43) .layout {
+			margin: 10px auto;
+			width: 300px;
+			height: 300px;
+
+			display: flex;
+			flex-direction: column;
+		}
+		.item1:nth-child(43) .header{
+			text-align: center;
+			line-height: 20px;
+			background-color: red;
+
+			height: 20px;
+		}
+		.item1:nth-child(43) .main {
+			width: 100%;
+			flex: 1;
+			display: flex;
+		}
+		.item1:nth-child(43) .aside{
+			background-color: #ccc;
+
+			flex: 2;
+		}
+		.item1:nth-child(43) .content{
+			background-color: yellow;
+
+			flex: 5;
+		}
+		.item1:nth-child(43) .footer{
+			text-align: center;
+			line-height: 20px;
+			background-color: red;
+
+			height: 20px;
+		}
+
+		.item1:nth-child(44) .text{
+			font-family: '微软雅黑';
+			line-height: 1.25;
+		
+			-webkit-column-count: 4;
+			-webkit-column-gap: 5px;
+			-webkit-column-width: 100px; /* 列宽设置不合理会自动调整列数 */  
+			-webkit-column-rule: 2px dashed #ccc;
+		}
+		h4 {	
+			-webkit-column-span: all;
+		}
+
+
+		.item1:nth-child(45) .box2{
+			display: flex;
+			display: -webkit-box;
+		}
+		.item1:nth-child(45) .box3:nth-child(1){
+			flex: 1;
+			-webkit-box-flex: 1;
+			-moz-box-flex: 1;
+			box-flex: 1;
+
+			align-items: center;
+			-webkit-box-align: center;
+
+			flex-direction: column;
+			box-orient: vertical;
+		}
+		.item1:nth-child(45) .box3:nth-child(2){
+			border: 5px solid #ccc;
+		}
+		.item1:nth-child(45) .box3:nth-child(3){
+			border: 5px solid #ccc;
+		}
+		
+		.item1:nth-child(46) .box4 {
+			width: 200px;
+			height: 100px;
+			margin: auto;background-color: yellow;
+			-webkit-box-reflect: right 5px -webkit-linear-gradient( 270deg,transparent 0%,transparent,rgba(255,255,255,.4));
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="item1" data-tag="线性两色 默认180deg">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="0deg">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="90deg">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="线性七色">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="to reight bottom/135deg">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="控制渐变30% 30%">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="控制渐变30% 60%">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="控制渐变50% 50%">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="径向渐变 默认 circle at center center">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="30px 60px at center center">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="30px 60px at left center">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="30px 60px at left top">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="重复径向渐变 yellow 10% red 40%">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="重复线性渐变 yellow 10% red 40%">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="立体感按钮">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="球">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="动态进度条">
+			<div class="box1"></div>
+		</div>
+		<div class="item1" data-tag="默认水平 display:flex; justify-content:space-around;">
+			<div class="box2">
+			<div class="box3">1</div>
+			<div class="box3">2</div>
+			<div class="box3">3</div></div>
+		</div>
+		<div class="item1" data-tag="设置方向 flex-direction:column">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="垂直反转  flex-direction:column-reverse">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="水平反转 flex-direction:row-reverse">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="主轴对齐方式默认 justify-content: flex-start">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="主轴对齐方式 justify-content: flex-end">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="主轴对齐方式 justify-content: center">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="主轴对齐方式 justify-content: space-around">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="主轴对齐方式 justify-content: space-between">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="默认侧轴对齐方式 align-items:flex-start">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="侧轴对齐方式 align-items:flex-end">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="侧轴对齐方式  align-items:center">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="侧轴对齐方式 align-items:baseline">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-items:stretch  1设置h:auto 2设置h:180px 3未设置 ">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-content:flex-start">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-content:flex-end">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-content:center">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-content:space-between">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-content:space-around">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>	
+		<div class="item1" data-tag="align-content:stretch 不能设置侧轴align-items">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+				<div class="box3">6</div>
+				<div class="box3">7</div>
+				<div class="box3">8</div>
+				<div class="box3">9</div>
+				<div class="box3">10</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="flex121">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="flex121 最后一个设置为100px">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="align-self: flex-end 覆盖父元素的align-items: center">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="order属性排序1:20 2:23 3:16 4:25 5:12">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+				<div class="box3">4</div>
+				<div class="box3">5</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="自适应导航栏">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="item1" data-tag="经典网页布局">
+			<div class="layout">
+				<div class="header">头部</div>
+				<div class="main">
+					<div class="aside">侧边栏</div>
+					<div class="content">主体内容</div>
+				</div>
+				<div class="footer">底部</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="多列布局">
+			<div class="text"><h4>多列布局多</h4>列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局多列布局</div>
+		</div>
+		<div class="item1" data-tag="兼容性">
+			<div class="box2">
+				<div class="box3">1</div>
+				<div class="box3">2</div>
+				<div class="box3">3</div>
+			</div>
+		</div>
+		<div class="item1" data-tag="倒影">
+			<div class="box2">
+				<div class="box4">1</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

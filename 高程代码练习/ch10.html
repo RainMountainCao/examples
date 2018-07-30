@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>ch10</title>
+	<script>
+		window.onload = function() {
+			var text = document.getElementById("text");
+			//alert(text.tagName);
+		//	console.log(outputAttributes(text));
+		
+			var textNode = document.getElementById("box2").firstChild;
+			console.log(textNode.length == textNode.data.length);
+			console.log(textNode.substringData(0, 8));
+			console.log(textNode.splitText(2));
+			console.log(textNode.nodeType);
+			console.log(textNode.nodeName);
+			console.log(textNode.nodeValue);
+			console.log(textNode.parentNode.tagName);
+			textNode.deleteData(0, 6);  //没有返回值
+			textNode.insertData(0, "111");
+
+			var fragment = document.createDocumentFragment();
+			var ul = document.getElementsByTagName("ul")[0];
+			var li = null;
+			for (var i = 0; i < 3; i++) {
+				li = document.createElement("li");
+				li.appendChild(document.createTextNode("item" + i));
+				fragment.appendChild(li);  //将li暂时加到fragment中，避免持续渲染页面
+			}
+			ul.appendChild(fragment);
+
+			var attr = document.createAttribute("align");
+			attr.value = "left";
+			ul.setAttributeNode(attr);
+
+			
+//			document.body.appendChild(script);
+			var box2 = document.getElementById("box2");
+
+			loadStyles("css.css");
+		}
+
+		function loadStyles(url) {
+			var link = document.createElement("link");
+			link.rel = "stylesheet";
+			link.type = "text/css";
+			link.href = url;
+			var head = document.getElementsByTagName("head")[0];
+			head.appendChild(link);
+		}
+
+		function loadStyleString(css) {
+			var style = document.createElement("style");
+			style.type = "text/css";
+			try {
+				style.appendChild(document.createTextNode(css));
+			}else(ex) {
+				style.styleSheet.cssText = css;
+			}
+			var head = document.getElementsByTagName("head")[0];
+			head.appendChild(style);
+		}
+
+		function loadScriptString(code) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			try {
+				script.appendChild(document.createTextNode(code));
+			} catch(ex) {
+				script.text = code;     //兼容IE
+			}
+			document.body.appendChild(script);
+		}
+
+		function outputAttributes(element) {
+			var array = new Array(),
+				len,
+				i,
+				attrName,
+				attrValue;
+			for (i = 0, len = element.attributes.length; i < len; i++) {
+				attrName = element.attributes[i].nodeName;
+				attrValue = element.attributes[i].nodeValue;
+				if (element.attributes[i].specified) {
+					array.push(attrName + "=\"" + attrValue + "\"");
+				}
+			}
+			return array.join(" ");
+		}
+
+
+	</script>
+</head>
+<body>
+	<!-- <input type="text" name="text" /> -->
+	<div id="text" align="left"></div>
+	<div id="box2">Hello world, amazing!!!</div>
+	<ul></ul>
+</body>
+</html>
+

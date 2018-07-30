@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>面向对象</title>
+	<script>
+/*			 function fn1() {
+			 	 sum = 0;
+			 }
+			 fn1();
+			 console.log(sum);
+			 //函数内部给未声明的变量赋值，需要函数执行后，该变量才会变成window全局变量
+	
+			 var sum;
+			 sum = 10;
+			 function fn2() {
+			 //	 var sum = 0;
+			 	 console.log(sum);
+			 }
+			 fn2();*/
+
+			 //用object对象
+			/* var person = {
+			 	name: "Nicholas"
+			 }
+			 Object.defineProperty(person, "name", {
+			 		value: "cao",
+			 		configurable: false
+			 });
+			 Object.defineProperty(person, "name", {
+			 	 //configurable: true
+			 	 //writable: false
+			 });
+			 //var p = new Person();
+			 person.name = "caocao";
+			 delete person.name;
+			 //console.log(person.name);
+
+			 //用function对象
+			 function Person(name) {
+			 	this.name = name;
+			 	Object.defineProperty(this, "name", {
+			 		value: "cao"
+			 	});
+			 }
+			 var p = new Person("liu");
+			 //console.log(p.name);
+
+			 var book = {
+			 	_year: 2004,
+			 	edition: 1
+			 }*/
+			 /*Object.defineProperty(book, "year", {
+			 	get: function() {
+			 		return this._year;
+			 	},
+			 	set: function(value) {
+			 		if (value > 2004) {
+			 			this._year = value;
+			 			this.edition += value - 2004;
+			 		}
+			 	}
+			 });*/
+			 /*book.__defineGetter__("year", function() {
+			 	return this._year;
+			 });
+			 book.__defineSetter__("year", function(value) {
+			 	if (value > 2004) {
+			 			this._year = value;
+			 			this.edition += value - 2004;
+			 		}
+			 });*/
+
+			 //console.log(book.year);
+
+			 /*Object.defineProperties(book, {
+			 	_year: {
+			 		writable: true,
+			 		value: 2004
+			 	},
+			 	edition: {
+			 		writable: true,
+			 		value: 1
+			 	},
+			 	year: {
+			 		get: function() {
+			 			return this._year;
+			 		},
+			 		set: function(value) {
+			 			this._year = value;
+			 		}
+			 	}
+			 });*/
+
+			/* Object.defineProperties(book, {
+			 	_year: {
+			 		value: 2004
+			 	},
+			 	edition: {
+			 		value: 1
+			 	},
+			 	year: {
+			 		get: function() {
+			 			return this._year;
+			 		},
+			 		set: function(value) {
+			 			this._year = value;
+			 		}
+			 	}
+			 });
+			 var descriptor = Object.getOwnPropertyDescriptor(book, "_year");*/
+/*			 console.log(descriptor.value);
+			 console.log(descriptor.configurable);
+			 console.log(typeof descriptor.get);
+*/
+			 //var descriptor1 = Object.getOwnPropertyDescriptor(book, "year");
+/*			 console.log(descriptor1.configurable);
+			 console.log(typeof descriptor1.get);
+			 console.log(typeof descriptor1.set);*/
+
+			 var o = {
+			 	toString: function() {
+			 		return "my object";
+			 	}
+			 }
+			 for(var prop in o) {
+			 	if (prop == "toString") {
+			 		console.log("Found toString");
+			 	}
+			 }
+			 //原型中的toString不可枚举，IE不枚举toString,对象中有也会跳过  但测试并非如此，在仿真条件下每一个版本都枚举正常
+
+
+
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

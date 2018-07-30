@@ -1,0 +1,38 @@
+div {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  color: red;
+  border-left: 2px;
+  border-style: solid;
+  background-color: red;
+  color: #ddd;
+}
+#box2 {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  color: red;
+  border-left: 2px;
+  color: #222;
+}
+/*
+.mixin (@s, @color) {
+	
+}
+
+.mixin (dark, @color) {
+	color: darken(@color, 10%);
+}
+.mixin (light, @color) {
+	color: lighten(@color, 10%);
+}
+.mixin (@_, @color) {
+	display: block;
+}
+
+@switch: light
+.class {
+	.mixin(@switch, #888);
+}
+*/
